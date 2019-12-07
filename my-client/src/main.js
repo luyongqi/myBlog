@@ -4,7 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import "babel-polyfill";       //解决浏览器兼容js的api
+import 'normalize.css/normalize.css'// A modern alternative to CSS resets
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import store from './store'
+
 Vue.config.productionTip = false
+
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({
