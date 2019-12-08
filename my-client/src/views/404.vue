@@ -34,7 +34,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .app-container {
     width: 80%;
     margin: 120px auto;

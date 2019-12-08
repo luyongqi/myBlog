@@ -1,10 +1,7 @@
 <template>
   <div class="app-wrapper" :class="classObj">
-    <!--<nav-top></nav-top>-->
-    <div>顶部</div>
-    <!--<sidebar class="sidebar-container"></sidebar>-->
+    <Header></Header>
     <div class="main-container">
-      <!--<navbar></navbar>-->
       <app-main></app-main>
     </div>
   </div>
@@ -13,33 +10,20 @@
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
 // import ResizeMixin from './mixin/ResizeHandler'
-import Breadcrumb from '@/components/Breadcrumb'
-import navTop from '@/components/new/navTop'
+import Header from './components/Header'
 import {getMenuList,getMenuListAll} from '@/api/menu';
 
 export default {
   name: 'layout',
   components: {
+    Header,   //头部导航
     Navbar, //二级navbar 放页面当前位置的
     Sidebar, //左侧导航
     AppMain, //内容组件
-    navTop, //顶部的顶级导航
   },
   // mixins: [ResizeMixin],
   computed: {
-    // sidebar() {
-    //   return this.$store.state.app.sidebar
-    // },
-    // device() {
-    //   return this.$store.state.app.device
-    // },
-    // classObj() {
-    //   return {
-    //     hideSidebar: !this.sidebar.opened,
-    //     withoutAnimation: this.sidebar.withoutAnimation,
-    //     mobile: this.device === 'mobile'
-    //   }
-    // },
+   
   },
   created(){
     //这里可以请求菜单,然后存入state 避免重复请求 后面权限需要设置菜单的显示与隐藏
