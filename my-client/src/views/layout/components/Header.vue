@@ -4,8 +4,8 @@
             <el-row :gutter="30">
                 <!--展开-->
                 <el-col class="hidden-md-and-up " :xs="4" :sm="3">
-                    <div class="">
-                        <div class="mnavh" :class="isOpen?'open':''">
+                    <div class="more">
+                        <div class="mnavh" :class="isOpen?'open':''" @click="hideToggle">
                            <span class="navicon"></span>
                         </div>
                     </div>
@@ -13,12 +13,12 @@
 
                 <!--logo-->
                 <el-col :xs="16" :sm="18" :md="5" :lg="4" :xl="4">
-                    <div class="logo">个人博客</div>
+                    <div class="logo">卢勇其个人博客</div>
                 </el-col>
 
                 <!--导航 -->
                 <el-col class="hidden-sm-and-down" :xs="0" :sm="18" :md="17" :lg="18" :xl="18">
-                    <el-menu :default-active="activeIndex" background-color="#000000" text-color="#fff" active-text-color="#409EFF" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                    <el-menu :default-active="activeIndex" background-color="#1C2327" text-color="#fff" active-text-color="#1C2327" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                         <template v-for="(item,index) in navList">
                             <el-menu-item :index="index" :key="index" v-if="item.subList.length==0" :route="item.url">
                                 <router-link class="link" :to="item.url">
@@ -119,6 +119,10 @@ export default {
 
     },
     methods: {
+        hideToggle(){
+            this.isOpen = !this.isOpen;
+            this.$emit('click',this.isOpen)
+        },
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         }
@@ -130,7 +134,7 @@ export default {
 <style lang="scss" scoped>
 .header {
     width: 100%;
-    background: #000;
+    background: #1C2327;
     position: fixed;
     color: #fff;
     line-height: 60px;
@@ -148,10 +152,13 @@ export default {
         background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
         z-index: 3000;
     } // 展开
+    
     .mnavh {
         width: 50px;
         position: relative;
         padding: 0 10px;
+        height: 60px;
+        padding-top: 28px;
         &.open .navicon:before {
             margin-top: 0;
             transform: rotate(45deg);
@@ -169,7 +176,7 @@ export default {
             width: 30px;
             height: 5px;
             background-color: #fff;
-            margin-top: 28px;
+            // margin-top: 28px;
             &:before,
             &:after {
                 content: '';
@@ -200,7 +207,7 @@ export default {
         background: url(../../../assets/images/bg.png) no-repeat center !important;
     }
     .navbox {
-        max-width: 1200px;
+        max-width: 1240px;
         margin: auto;
         .el-menu-item,
         .el-menu--horizontal>.el-submenu .el-submenu__title {
@@ -217,6 +224,7 @@ export default {
         .el-menu--horizontal>.el-menu-item.is-active,
         .el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
             border-bottom: none;
+            background: none;;
         }
         .el-menu>.el-menu-item a:hover {
             color: #409EFF !important;

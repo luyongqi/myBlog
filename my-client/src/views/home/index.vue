@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
 
-    <el-row :gutter="12">
+    <el-row :gutter="18">
       <!--左侧主体内容-->
-      <el-col :xs="24" :sm="18" :md="18" :lg="18" :xl="18">
+      <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
         <div class="main-left-box">
           <!--顶部-->
           <div class="headbox">
@@ -40,20 +40,60 @@
               </el-col>
             </el-row>
           </div>
-          <!--tab-->
+          <!--tab 选项卡-->
           <div class="whitebg tabbox">
-
+            <el-tabs v-model="activeName" >
+              <el-tab-pane :label="item.title" :name="index+''" v-for="(item,index) in tabList" :key="index">
+                  <el-row>
+                    <!--图文-->
+                    <el-col :span="6">
+                      <div class="c-left-box" v-for="(p,i) in item.recommendList" :key="i">
+                        <el-image class="c-img" :src="p.src" fit="cover"></el-image>
+                      </div>
+                    </el-col>
+                    <!--手风琴-->
+                    <el-col :span="18"> 
+                      <el-collapse v-model="collapseName" accordion v-for="(m,k) in item.newsList" :key="k">
+                        <el-collapse-item :title="m.title" :name="k">
+                          <div>{{m.content}}</div>
+                        </el-collapse-item>
+                      </el-collapse>
+                    </el-col>
+                  </el-row>
+              </el-tab-pane>
+            </el-tabs>
           </div>
+
         </div>
       </el-col>
 
       <!--右侧内容-->
-      <el-col class="hidden-xs-only" :sm="6" :md="6" :lg="6" :xl="6">
+      <el-col class="hidden-sm-and-down" :md="6" :lg="6" :xl="6">
         <div class="main-right-box">
-          <div class="card"></div>
+          <!--我的名片-->
+          <div class="card">
+             <h2 class="title">我的名片</h2>
+             <p>网名：DanceSmile | 即步非烟</p>
+             <p>职业：Web前端设计师、网页设计</p>
+             <p>现居：湖北省-武汉市</p>
+             <p>Email：dancesmiling@qq.com</p>
+             <ul class="linkmore">
+               <li>
+                 <router-link class="linkto iconfont iconshouye" title="网站地址" to="/"></router-link>
+               </li>
+               <li>
+                 <router-link class="linkto iconfont iconyouxiang-" title="我的邮箱" to="/"></router-link>
+               </li>
+               <li>
+                 <router-link class="linkto iconfont iconicon" title="QQ联系我" to="/"></router-link>
+               </li>
+               <li>
+                 <router-link class="linkto iconfont iconweixin" title="网站地址" to="/"></router-link>
+               </li>
+             </ul>
+          </div>
           <div class="whitebg notice"></div>
           <div class="whitebg recommend"></div>
-
         </div>
       </el-col>
     </el-row>
@@ -62,8 +102,8 @@
 
 <script>
 import Vue from 'vue'
-import { Carousel, Image, Row, Col } from 'element-ui';
-Vue.use(Carousel, Image, Row, Col)
+import { Carousel, Image, Row, Col,Tabs,Collapse } from 'element-ui';
+Vue.use(Carousel, Image, Row, Col,Tabs,Collapse)
 
 export default {
   name: 'home',
@@ -76,6 +116,61 @@ export default {
         { url: require('@/assets/images/2.jpg'), title: '你看我叼吗2', id: 2 },
         { url: require('@/assets/images/3.jpg'), title: '你看我叼吗3', id: 3 },
         { url: require('@/assets/images/4.jpg'), title: '你看我叼吗3', id: 3 }
+      ],
+      activeName:'0',   //当前绑定的选项卡
+      collapseName:['0'],  //手风琴绑定的name
+      tabList:[
+        {
+          title:'个人博客',
+          recommendList:[ //2条 图文
+            {
+              title:'个人网站做好了，百度不收录怎么办？来，看看他们怎么做的',
+              src:require('@/assets/images/4.jpg')
+            },
+             {
+              title:'个人博客，属于我的小世界！',
+              src:require('@/assets/images/2.jpg')
+            },
+          ],
+          newsList:[  //5条
+            {
+              title:'安静地做一个爱设计的女子',
+              content:'自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。每当看到自己喜欢的配色图片'
+            },
+            {
+              title:'电话以外的宁静',
+              content:'电话很久没有响过了，我的QQ也很久没有在线了，消失了很多天，刚刚结识的朋友因为我身上又起了红疹，每天都发来消息询问我的情况，我做到了这么多天来的沉默，我相信，没有网络，我还是可以继续我自己的生活'
+            },
+            {
+              title:'遇见一个未知的你',
+              content:'听着那熟悉的歌曲看着那一张张可爱的图片.-读着我们共同欣赏的诗……也许我们曾经相遇,看着你远去的背影 ,沿着你来的方向 ,回忆时间穿梭于幸福的点点滴滴....'
+            },
+            {
+              title:'个人网站做好了，百度不收录怎么办？来，看看他们怎么做的...',
+              content:'不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了'
+            },
+            {
+              title:'个人博客，属于我的小世界！',
+              content:'个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。'
+            },
+          ]
+        },
+        {
+          title:'css3|html5',
+          recommendList:[],
+          newsList:[]
+        },
+       {
+          title:'推荐工具',
+          recommendList:[],
+          newsList:[]
+        },
+        {
+          title:'设计心得',
+          recommendList:[],
+          newsList:[]
+        }
+      
       ]
     }
   },
@@ -121,6 +216,16 @@ export default {
     //tab
     .tabbox{
       width: 100%;
+      .c-left-box{
+        position: relative;
+        .c-img{
+          display: block;
+          width: 100%;
+          height: 100px;
+          margin-bottom: 10px;
+          border-radius: 3px;
+        }
+      }
     }
 
   } 
@@ -133,6 +238,64 @@ export default {
       height: 260px;
       overflow: hidden;
       margin-bottom: 20px;
+      text-align: left;
+      & h2{
+        font-size: 22px;
+        margin: 10px;
+        color: #89919a;
+        font-weight: normal;
+        padding-bottom: 10px;
+      }
+      & p{
+        font-size: 12px;
+        padding: 0 0 0 20px;
+        line-height: 28px;
+        text-shadow: 0px 1px 2px rgba(0,0,0,.5);
+        color: #d0d2d4;
+        margin: 0;
+      }
+      .linkmore{
+        width: 100%;
+        padding: 0 20px;
+        margin: 15px 0;
+        &:after{
+          display: table;
+          content: '';
+          clear: both;
+          overflow: hidden;
+        }
+        & li{
+           width: 25%;
+          list-style: none;
+          float: left;
+          .linkto{
+              width: 53px;
+              height: 53px;
+              line-height: 53px;
+              display: block;
+              overflow: hidden;
+              box-shadow: 0px 1px 0px rgba(255,255,255,.1), inset 0px 1px 1px rgba(0,0,0,.7);
+              border-radius: 50%;
+              margin: 0 5px;
+          }
+          .iconshouye{
+            color: #ef5509;
+            font-size: 32px;
+          }
+          .iconyouxiang-{
+              color: #FF991A;
+             font-size: 28px;
+          }
+          .iconicon{
+                color: #1296DB;
+            font-size: 30px;
+          }
+          .iconweixin{
+            color: #07AF12;
+            font-size: 32px;
+          }
+        }
+      }
     }
   }
 }

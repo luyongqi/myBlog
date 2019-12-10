@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
-    <Slider></Slider>
-    <Header></Header>
+    <Slider ref="son"></Slider>
+    <Header @click="getOpenStatus"></Header>
     <section class="main-container">
       <app-main></app-main>
     </section>
@@ -30,6 +30,12 @@ export default {
   },
   created(){
   
+  },
+  methods:{
+    getOpenStatus(status){
+      console.log(status)
+      this.$refs.son.drawer = status;
+    }
   }
 }
 
@@ -38,7 +44,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   .app-wrapper {
-    max-width: 1200px;
+    max-width: 1240px;
     margin:auto;
     padding-top: 60px;
   }
