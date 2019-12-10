@@ -4,7 +4,7 @@
             <el-row :gutter="30">
                 <!--logo-->
                 <el-col :xs="20" :sm="21" :md="5" :lg="4" :xl="4">
-                    <div class="logo">卢勇其个人博客</div>
+                    <div class="logo">个人博客</div>
                 </el-col>
 
                 <!--导航 -->
@@ -16,7 +16,7 @@
                                     {{item.title}}
                                 </router-link>
                             </el-menu-item>
-                            <el-submenu :index="index" :key="index" v-if="item.subList.length>0">
+                            <el-submenu :index="index" :key="index+'1'" v-if="item.subList.length>0">
                                 <template slot="title">
                                     <router-link class="link" :to="item.url">
                                         {{item.title}}
@@ -44,9 +44,7 @@
 <script>
 import Vue from 'vue'
 import { Row, Col, Menu } from 'element-ui';
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Menu)
+Vue.use(Row, Col, Menu)
 
 export default {
     data() {
