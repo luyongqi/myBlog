@@ -59,12 +59,17 @@ export default {
                     subList: []
                 },
                 {
-                    title: '个人博客',
-                    url: '/personalBlog',
+                    title: '我的相册',
+                    url: '/photo',
+                    subList: []
+                },
+                 {
+                    title: '我的日记',
+                    url: '/dirary',
                     subList: []
                 },
                 {
-                    title: '网站制作',
+                    title: '学无止境',
                     url: '/webDesign',
                     subList: [
                         {
@@ -80,30 +85,20 @@ export default {
                             url: '/webDesign',
                         },
                     ]
-                },
-                {
-                    title: '设计心得',
-                    url: '/designFeel',
-                    subList: []
-                },
+                }, 
                 {
                     title: '关于我',
-                    url: '/aboutMe',
+                    url: '/about',
                     subList: []
                 },
                 {
                     title: '时间轴',
-                    url: '/timerShaft',
-                    subList: []
-                },
-                {
-                    title: '博客导航',
-                    url: '/blogNav',
+                    url: '/timer',
                     subList: []
                 },
                 {
                     title: '留言',
-                    url: '/leaveWord',
+                    url: '/word',
                     subList: []
                 },
             ]
