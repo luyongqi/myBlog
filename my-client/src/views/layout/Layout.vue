@@ -4,12 +4,14 @@
     <div class="main-container">
       <app-main></app-main>
     </div>
+
   </div>
 </template>
 
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
 // import ResizeMixin from './mixin/ResizeHandler'
+import Header from './components/Header'
 import Header from './components/Header'
 import {getMenuList,getMenuListAll} from '@/api/menu';
 

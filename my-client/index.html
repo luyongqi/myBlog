@@ -7,6 +7,15 @@
   </head>
   <body>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
+
+  <!-- 页面滚动显示动画效果，IE10 以下无效 -->
+  <script src="./static/js/scrollReveal.js"></script>  
+  <script>
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+        (function(){
+        window.scrollReveal = new scrollReveal({reset: true});
+      })();
+    };
+</script>
 </html>
