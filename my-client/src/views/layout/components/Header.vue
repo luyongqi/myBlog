@@ -2,8 +2,17 @@
     <header class="header">
         <div class="navbox">
             <el-row :gutter="30">
+                <!--展开-->
+                <el-col class="hidden-md-and-up " :xs="4" :sm="3">
+                    <div class="">
+                        <div class="mnavh" :class="isOpen?'open':''">
+                           <span class="navicon"></span>
+                        </div>
+                    </div>
+                </el-col>
+
                 <!--logo-->
-                <el-col :xs="20" :sm="21" :md="5" :lg="4" :xl="4">
+                <el-col :xs="16" :sm="18" :md="5" :lg="4" :xl="4">
                     <div class="logo">个人博客</div>
                 </el-col>
 
@@ -34,7 +43,7 @@
                 </el-col>
                 <!--搜索-->
                 <el-col :xs="4" :sm="3" :md="2" :lg="2" :xl="2">
-                    <div class="search">搜索</div>
+                    <div class="search"></div>
                 </el-col>
             </el-row>
         </div>
@@ -49,6 +58,7 @@ Vue.use(Row, Col, Menu)
 export default {
     data() {
         return {
+            isOpen:false,     //是否打开侧边栏
             activeIndex: '1',
             navList: [
                 {
@@ -61,7 +71,7 @@ export default {
                     url: '/photo',
                     subList: []
                 },
-                 {
+                {
                     title: '我的日记',
                     url: '/dirary',
                     subList: []
@@ -83,7 +93,7 @@ export default {
                             url: '/webDesign',
                         },
                     ]
-                }, 
+                },
                 {
                     title: '关于我',
                     url: '/about',
@@ -137,20 +147,66 @@ export default {
         left: 0;
         background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
         z-index: 3000;
-    }
+    } // 展开
+    .mnavh {
+        width: 50px;
+        position: relative;
+        padding: 0 10px;
+        &.open .navicon:before {
+            margin-top: 0;
+            transform: rotate(45deg);
+        }
+        &.open .navicon:after {
+            margin-top: 0;
+            transform: rotate(-45deg);
+        }
+        &.open .navicon {
+            background: none;
+        }
+        .navicon {
+            display: block;
+            position: relative;
+            width: 30px;
+            height: 5px;
+            background-color: #fff;
+            margin-top: 28px;
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                width: 30px;
+                height: 5px;
+                position: absolute;
+                background: #fff;
+                transition-property: margin, transform;
+                transition-duration: 300ms;
+            }
+            &:before {
+                margin-top: -10px;
+            }
+            &:after {
+                margin-top: 10px;
+            }
+        }
+    } // logo
     .logo {
         font-size: 22px;
+    } // 搜索
+    .search {
+        width: 60px;
+        height: 60px;
+        float: right;
+        cursor: pointer;
+        background: url(../../../assets/images/bg.png) no-repeat center !important;
     }
-    .search {}
     .navbox {
         max-width: 1200px;
         margin: auto;
         .el-menu-item,
         .el-menu--horizontal>.el-submenu .el-submenu__title {
-            
             padding: 0 15px;
         }
-        .link{
+        .link {
             display: inline-block;
             height: 100%;
             font-size: 15px;
@@ -158,13 +214,14 @@ export default {
         .el-menu.el-menu--horizontal {
             border: none;
         }
-        .el-menu--horizontal>.el-menu-item.is-active,.el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
+        .el-menu--horizontal>.el-menu-item.is-active,
+        .el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
             border-bottom: none;
         }
-       .el-menu>.el-menu-item a:hover{
+        .el-menu>.el-menu-item a:hover {
             color: #409EFF !important;
         }
-       .link:hover {
+        .link:hover {
             color: #409EFF !important;
         }
     }
