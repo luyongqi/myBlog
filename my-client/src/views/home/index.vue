@@ -52,12 +52,14 @@
                       </div>
                     </el-col>
                     <!--手风琴-->
-                    <el-col :span="18"> 
-                      <el-collapse v-model="collapseName" accordion v-for="(m,k) in item.newsList" :key="k">
-                        <el-collapse-item :title="m.title" :name="k">
-                          <div>{{m.content}}</div>
-                        </el-collapse-item>
-                      </el-collapse>
+                    <el-col :span="18">   
+                      <ul class="newslist">
+                        <li v-for="(m,k) in item.newsList" :key="k">
+                          <i></i>
+                          <router-link class="ltitle" to="" :title="m.title">{{m.title}}</router-link>
+                          <p>{{m.content}}</p>
+                        </li>
+                      </ul>
                     </el-col>
                   </el-row>
               </el-tab-pane>
@@ -124,32 +126,39 @@ export default {
           title:'个人博客',
           recommendList:[ //2条 图文
             {
+              id:5,
               title:'个人网站做好了，百度不收录怎么办？来，看看他们怎么做的',
               src:require('@/assets/images/4.jpg')
             },
              {
+               id:6,
               title:'个人博客，属于我的小世界！',
               src:require('@/assets/images/2.jpg')
             },
           ],
           newsList:[  //5条
             {
+              id:1,
               title:'安静地做一个爱设计的女子',
               content:'自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。每当看到自己喜欢的配色图片'
             },
             {
+              id:2,
               title:'电话以外的宁静',
               content:'电话很久没有响过了，我的QQ也很久没有在线了，消失了很多天，刚刚结识的朋友因为我身上又起了红疹，每天都发来消息询问我的情况，我做到了这么多天来的沉默，我相信，没有网络，我还是可以继续我自己的生活'
             },
             {
+              id:3,
               title:'遇见一个未知的你',
               content:'听着那熟悉的歌曲看着那一张张可爱的图片.-读着我们共同欣赏的诗……也许我们曾经相遇,看着你远去的背影 ,沿着你来的方向 ,回忆时间穿梭于幸福的点点滴滴....'
             },
             {
+              id:4,
               title:'个人网站做好了，百度不收录怎么办？来，看看他们怎么做的...',
               content:'不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了'
             },
             {
+              id:5,
               title:'个人博客，属于我的小世界！',
               content:'个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。'
             },
@@ -226,8 +235,107 @@ export default {
           border-radius: 3px;
         }
       }
-    }
+      .newslist{
+        margin: 0;
+        padding-left: 20px;
+        text-align: left;
 
+        & li{
+          list-style: none;
+          height: 32px;
+          overflow: hidden;
+          padding: 0 20px 10px 20px;
+          i {
+            display: block;
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin-top: 6px;
+            margin-right: 20px;
+            position: relative;
+            font-style: normal;
+            background: #9a9a9a;
+            &:before{
+              position: absolute;
+              left: 0;
+              top: 0;
+              font-size: 9px;
+              color: #fff;
+              line-height: 20px;
+              width: 20px;
+              text-align: center;
+            }
+          } 
+        }
+        & li:nth-child(1){
+          height: 100%;
+          background: #f7f7f7;
+          i{
+            background: #222;
+          }
+          .ltitle{
+            font-weight: bold;
+          } 
+        }
+        &:hover{
+         & li{
+            height: 32px;
+            background: #fff;
+            i{
+            background: #9a9a9a;
+            }
+            .ltitle{
+              font-weight: normal;
+            }
+          }
+            
+        }
+        & li:hover {
+          height: 100%;
+          background: #f7f7f7;
+          i{
+            background: #222;
+          }
+          .ltitle{
+            font-weight: bold;
+          }
+        }
+
+        & li:nth-child(1) i::before {
+            content: "1"; 
+         }
+        & li:nth-child(2) i::before {
+            content: "2"; 
+         }
+         & li:nth-child(3) i::before {
+            content: "3"; 
+         }
+         & li:nth-child(4) i::before {
+            content: "4"; 
+         }
+         & li:nth-child(5) i::before {
+            content: "5"; 
+         }
+        & .ltitle{
+          display: inline-block;
+          height: 32px;
+          line-height: 32px;
+          color: #333;
+        }
+        
+        & p {
+          height: 48px;
+          line-height: 24px;
+          font-size: 14px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          margin: 0;
+        }
+      }  
+    }
   } 
   // 右侧
   .main-right-box {
