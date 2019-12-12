@@ -198,6 +198,7 @@ export default {
     } // logo
     .logo {
         font-size: 22px;
+        text-align: center;
     } // 搜索
     .search {
         width: 60px;
