@@ -64,6 +64,34 @@
               </el-tab-pane>
             </el-tabs>
           </div>
+          <!--特别推荐-->
+          <div class="recommend-box whitebg">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>卡片名称</span>
+              </div>
+              <div v-for="o in 4" :key="o" class="text item">
+                {{'列表内容 ' + o }}
+              </div>
+            </el-card>
+          </div>
+
+          <!--分隔图片-->
+          <div class="ad-box whitebg">
+              <el-image class="ad-img" :src="adImg" fit="cover"></el-image>
+          </div>
+
+          <!--最新博文-->
+          <div class="new-list-box whitebg">
+            <el-card class="box-card">
+              <div slot="header" class="clearfix">
+                <span>卡片名称</span>
+              </div>
+              <div v-for="o in 4" :key="o" class="text item">
+                {{'列表内容 ' + o }}
+              </div>
+            </el-card>
+          </div>
 
         </div>
       </el-col>
@@ -103,8 +131,8 @@
 
 <script>
 import Vue from 'vue'
-import { Carousel, Image, Row, Col,Tabs,Collapse } from 'element-ui';
-Vue.use(Carousel, Image, Row, Col,Tabs,Collapse)
+import { Carousel, Image, Row, Col,Tabs,Collapse,Card } from 'element-ui';
+Vue.use( Carousel, Image, Row, Col,Tabs,Collapse,Card )
 
 export default {
   name: 'home',
@@ -112,6 +140,7 @@ export default {
     return {
       img1: require('@/assets/images/h1.jpg'),
       img2: require('@/assets/images/h2.jpg'),
+      adImg:require('@/assets/images/longad.jpg'),    //广告图片
       carouselData: [
         { url: require('@/assets/images/1.jpg'), title: '你看我叼吗1', id: 1 },
         { url: require('@/assets/images/2.jpg'), title: '你看我叼吗2', id: 2 },
@@ -404,6 +433,21 @@ export default {
           margin: 0;
         }
       }  
+    }
+    // 特别推荐
+    .recommend-box{
+
+    }
+    // 广告图片
+    .ad-box{
+      .ad-img{
+        width: 100%;
+        height: 130px;
+      }
+    }
+    // 最新博文
+    .new-list-box{
+
     }
   } 
   // 右侧
