@@ -8,35 +8,31 @@
           <!--顶部-->
           <div class="headbox">
             <el-row :gutter="12">
+              <!--轮播-->
               <el-col :xs="24" :sm="16" :md="16" :lg="16" :xl="16">
                 <el-carousel class="carousel" trigger="click" height="260px" :interval="5000">
                   <el-carousel-item class="carousel-item" v-for="(item,index) in carouselData" :key="index">
-                    <el-image class="img" :src="item.url" fit="cover">
-                      <div slot="placeholder" class="image-slot">
-                        加载中
-                        <span class="dot">...</span>
-                      </div>
-                    </el-image>
+                    <el-image class="img" :src="item.url" fit="cover"></el-image>
                   </el-carousel-item>
                 </el-carousel>
               </el-col>
-
+              <!-- 中间两张图片 -->
               <el-col :xs="12" :sm="8" :md="8" :lg="8" :xl="8">
-                <el-image :src="img1" fit="cover" style="width:100%;height:125px;border-radius:3px;margin-bottom:8px">
-                  <div slot="placeholder" class="image-slot">
-                    加载中
-                    <span class="dot">...</span>
-                  </div>
-                </el-image>
+                <div class="headline">
+                  <router-link to="" title="为什么说10月24日是程序员的节日">
+                    <el-image class="img1" :src="img1" fit="cover" ></el-image>
+                    <span>为什么说10月24日是程序员的节日</span>
+                  </router-link> 
+                </div>
               </el-col>
 
               <el-col :xs="12" :sm="8" :md="8" :lg="8" :xl="8">
-                <el-image :src="img2" fit="cover" style="width:100%;height:125px;border-radius:3px;">
-                  <div slot="placeholder" class="image-slot">
-                    加载中
-                    <span class="dot">...</span>
-                  </div>
-                </el-image>
+                <div class="headline">
+                  <router-link to="" title="个人网站做好了，百度不收录怎么办？">
+                    <el-image class="img1" :src="img2" fit="cover" ></el-image>
+                    <span>个人网站做好了，百度不收录怎么办？</span>
+                  </router-link> 
+                </div>
               </el-col>
             </el-row>
           </div>
@@ -48,7 +44,10 @@
                     <!--图文-->
                     <el-col :span="6">
                       <div class="c-left-box" v-for="(p,i) in item.recommendList" :key="i">
-                        <el-image class="c-img" :src="p.src" fit="cover"></el-image>
+                        <router-link to="" :title="p.title">
+                          <el-image class="c-img" :src="p.src" fit="cover"></el-image>
+                          <span>{{p.title}}</span>
+                        </router-link>
                       </div>
                     </el-col>
                     <!--手风琴-->
@@ -210,6 +209,7 @@ export default {
     max-width: 900px; 
     // 顶部盒子内容
     .headbox {
+      // 轮播
       .carousel {
         width: 100%;
         margin-bottom: 20px;
@@ -221,19 +221,83 @@ export default {
           }
         }
       }
-    } 
+      .headline{
+          width: 100%;
+          background: #000;
+          overflow: hidden;
+          height: 125px;
+          margin-bottom: 10px;
+          border-radius: 3px;
+          position: relative;
+          .img1{
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+            transition: all 0.5s ease;
+          }
+          span{
+            bottom: 0;
+            position: absolute;
+            height: 48px;
+            top: 30%;
+            left: 0;
+            right: 0;
+            color: #FFF;
+            text-align: center;
+            font-size: 15px;
+            margin-top: 5px;
+            padding: 0 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-height: 24px;
+          }
+      }
+      .headline:hover .img1{
+         opacity: 0.9;
+         transform: scale(1.1);
+      }
+    }
     //tab
     .tabbox{
       width: 100%;
       .c-left-box{
         position: relative;
+        height: 100px;
+        margin-bottom: 10px;
+        background: rgba(0,0,0,1);
+        overflow: hidden;
+        border-radius: 3px;
         .c-img{
           display: block;
           width: 100%;
-          height: 100px;
-          margin-bottom: 10px;
+          height: 100%;     
           border-radius: 3px;
+          opacity: 0.7;
+          transition: all 0.5s ease;
         }
+        span{
+             position: absolute;
+              bottom: 30%;
+              left: 0;
+              right: 0;
+              color: #FFF; 
+              text-align: center;
+              font-size: 15px;
+              padding: 0 40px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-box-orient: vertical;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              line-height: 22px;
+        }
+      }
+      .c-left-box:hover .c-img{
+        opacity: 0.9;
+        transform: scale(1.1);
       }
       .newslist{
         margin: 0;
@@ -244,7 +308,7 @@ export default {
           list-style: none;
           height: 32px;
           overflow: hidden;
-          padding: 0 20px 10px 20px;
+          padding: 0 20px 6px 20px;
           i {
             display: block;
             width: 20px;
@@ -267,6 +331,7 @@ export default {
             }
           } 
         }
+       
         & li:nth-child(1){
           height: 100%;
           background: #f7f7f7;
@@ -318,9 +383,13 @@ export default {
          }
         & .ltitle{
           display: inline-block;
+          width: 88%;
           height: 32px;
           line-height: 32px;
           color: #333;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
         
         & p {
