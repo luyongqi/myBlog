@@ -383,7 +383,7 @@ export default {
          }
         & .ltitle{
           display: inline-block;
-          width: 88%;
+          width: 70%;
           height: 32px;
           line-height: 32px;
           color: #333;
