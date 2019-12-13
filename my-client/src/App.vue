@@ -21,5 +21,13 @@ export default {
     font-size: 15px;
     color: #2c3e50;
     background:#E9EAED;
+    .el-card__header{
+      padding:10px 0;
+    }
+    .tabbox{
+      .el-tabs__item{
+          font-size: 16px;
+        }
+    }
   }
 </style>
