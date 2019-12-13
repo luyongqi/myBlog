@@ -187,7 +187,9 @@
               <el-row class="img-box" :gutter="2">
                   <el-col  v-for="o in 6" :key="o" :xs="12" :sm="12" :md="12" :lg="8" :xl="8">
                       <div class="img-item">
-                        <el-image class="pimg" :src="img1" fit="cover"></el-image>
+                        <router-link to="">
+                          <el-image class="pimg" :src="img1" fit="cover"></el-image>
+                        </router-link>
                       </div>
                   </el-col>
               </el-row> 
