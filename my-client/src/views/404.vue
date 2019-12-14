@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="app-container">
-      <el-col :span="12">
+      <el-row>
+        <el-col :span="12">
         <img :src="img_404" alt="404" class="img-style">
       </el-col>
       <el-col :span="12">
@@ -12,6 +13,8 @@
           <el-button style="margin-top: 20px" type="primary" round @click="handleGoMain">返回首页</el-button>
         </div>
       </el-col>
+      </el-row>
+      
     </div>
   </div>
 </template>

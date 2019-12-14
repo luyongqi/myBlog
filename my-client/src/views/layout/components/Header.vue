@@ -18,20 +18,21 @@
 
                 <!--导航 -->
                 <el-col class="hidden-sm-and-down" :xs="0" :sm="18" :md="17" :lg="18" :xl="18">
-                    <el-menu :default-active="activeIndex" background-color="#1C2327" text-color="#fff" active-text-color="#1C2327" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                        <template v-for="(item,index) in navList">
-                            <el-menu-item :index="index" :key="index" v-if="item.subList.length==0" :route="item.url">
+                    <el-menu :default-active="activeIndex" background-color="#1C2327" text-color="#fff" default-active="0" active-text-color="#409eff" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                        <template v-for="(item,i) in navList">
+                            <el-menu-item :index="i+''" :key="i" v-if="item.subList.length==0" :route="item.url">
                                 <router-link class="link" :to="item.url">
                                     {{item.title}}
                                 </router-link>
                             </el-menu-item>
-                            <el-submenu :index="index" :key="index+'1'" v-if="item.subList.length>0">
+
+                            <el-submenu :index="i+''" :key="i" v-if="item.subList.length>0">
                                 <template slot="title">
                                     <router-link class="link" :to="item.url">
                                         {{item.title}}
                                     </router-link>
                                 </template>
-                                <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="index+'-'+k" :route="p.url">
+                                <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="i+'-'+k" :route="p.url">
                                     <router-link class="link" :to="p.url">
                                         {{p.title}}
                                     </router-link>
@@ -78,7 +79,7 @@ export default {
                 },
                 {
                     title: '学无止境',
-                    url: '/webDesign',
+                    url: '/study',
                     subList: [
                         {
                             title: 'css3|html5',

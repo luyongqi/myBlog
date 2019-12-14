@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">
-    <Slider ref="son"></Slider>
-    <Header @click="getOpenStatus"></Header>
+    <Slider ref="slider" @click="closeSlider"></Slider>
+    <Header ref="header" @click="getOpenStatus"></Header>
     <section class="main-container">
       <app-main></app-main>
     </section>
@@ -32,9 +32,13 @@ export default {
   
   },
   methods:{
+    // 点击选项 关闭侧边栏
     getOpenStatus(status){
-      console.log(status)
-      this.$refs.son.drawer = status;
+      this.$refs.slider.drawer = status;
+    },
+    // 点击选项 关闭header
+    closeSlider(status){
+      this.$refs.header.isOpen = status;
     }
   }
 }
@@ -47,5 +51,8 @@ export default {
     max-width: 1240px;
     margin:auto;
     padding-top: 60px;
+  }
+  .main-container{
+    min-height: 60vh;
   }
 </style>

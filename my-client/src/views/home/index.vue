@@ -70,6 +70,9 @@
               <!--标题-->
               <div slot="header" class="rtitle">
                 <span>特别推荐</span>
+                <p class="hnav">
+                  <router-link class="link" to="" v-for="o in 4" :key="o">帝国cms</router-link>
+                </p>
               </div>
 
               <!--卡片列表-->
@@ -350,6 +353,7 @@ export default {
 
 <style scoped lang="scss">
 .app-container {
+  position: relative;
   // 白色背景盒子
   .whitebg {
     background: #fff;
@@ -586,6 +590,33 @@ export default {
     
      // 特别推荐
       .recommend-box{
+        position: relative;
+        .hnav{
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          margin: 0;
+          font-size: 16px;
+          & .link{
+            display: inline-block;
+            margin-right: 10px;
+             padding-right: 10px;
+             
+          }
+          & .link:after {
+            position: relative;
+            content: "/";
+            right: -10px;
+            bottom: 0;
+            color: #ccc;
+          }
+          & .link:last-child:after {
+            content: ""; 
+          }
+          & .link:hover{
+            color: #000;
+          }
+        }
         .list-box{
           margin-top: 20px;
           .el-card{
@@ -847,6 +878,9 @@ export default {
             color: #07AF12;
             font-size: 32px;
           }
+        }
+        & li:hover{
+          opacity: 0.5;
         }
       }
     }

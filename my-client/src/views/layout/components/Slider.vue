@@ -1,26 +1,27 @@
 <template>
     <div class="slider">
-        <el-drawer wrapperClosable="false" :visible.sync="drawer" direction="rt1" size="100%" :before-close="handleClose">
+        <el-drawer  :visible.sync="drawer" direction="rt1" size="100%" :before-close="handleClose">
 
             <el-menu default-active="2" class="el-menu-demo" @open="handleOpen" @close="handleClose">
                 <template v-for="(item,index) in navList">
 
-                    <el-menu-item :index="index" :key="index" v-if="item.subList.length==0" :route="item.url">
+                    <el-menu-item :index="index+''" :key="index" v-if="item.subList.length==0" :route="item.url" @click="closeSlider">
                         <i class="el-icon-setting"></i>
                         <router-link class="link" :to="item.url">
                             {{item.title}}
                         </router-link>
                     </el-menu-item>
 
-                    <el-submenu :index="index" :key="index+'1'" v-if="item.subList.length>0">
+                    <el-submenu :index="index+''" :key="index+'1'" v-if="item.subList.length>0">
                         <template slot="title">
                             <i class="el-icon-location"></i>
-                            <router-link class="link" :to="item.url">
+                            <span class="link">{{item.title}}</span>
+                            <!--<router-link class="link" :to="item.url">
                                 {{item.title}}
-                            </router-link>
+                            </router-link>-->
                         </template>
 
-                        <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="index+'-'+k" :route="p.url">
+                        <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="index+'-'+k" :route="p.url" @click="closeSlider">
                             <router-link class="link" :to="p.url">
                                 {{p.title}}
                             </router-link>
@@ -60,7 +61,7 @@ export default {
                 },
                 {
                     title: '学无止境',
-                    url: '/webDesign',
+                    url: '/study',
                     subList: [
                         {
                             title: 'css3|html5',
@@ -95,6 +96,10 @@ export default {
         }
     },
     methods: {
+        closeSlider(){
+            this.drawer = false;
+            this.$emit('click',false)
+        },
         handleClose(done) {
             this.$confirm('确认关闭？')
                 .then(_ => {
