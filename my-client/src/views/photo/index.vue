@@ -51,6 +51,7 @@
 
 <script>
 import scrollReveal from 'scrollreveal';
+
 export default {
   name:'about',
   data () {
