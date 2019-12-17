@@ -9,7 +9,8 @@ import 'normalize.css/normalize.css'// A modern alternative to CSS resets
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css';         //用于在某些条件下隐藏元素
-
+import '@/permission'               // permission control 
+ 
 import store from './store'
 
 Vue.config.productionTip = false
