@@ -1,8 +1,16 @@
 <template>
 	<div class="dowebok">
 		<el-row :gutter="10" class="list">
-			<el-col v-for="o in 4" :key="o" :span="6">
-				<el-image class="reveal-top" v-for="(item,i) in imgList" :key="i" :src="item.src" fit="cover"></el-image>
+			<el-col v-for="(item,i) in revealList" :key="i" :span="6">
+				<div class="reveal-top card-box" v-for="(p,k) in item" :key="k">
+					<div class="img-box">
+						<el-image class="img" :src="p.src" fit="cover"></el-image>
+					</div>
+					<div class="picinfo">
+						<h3>个人博客模板《繁花》</h3>
+						<span>好咖啡要和朋友一起品尝，好“模板”也要和同样喜欢它的人一起分享。</span>
+					</div>
+				</div>
 			</el-col>
 		</el-row>
 	</div>
@@ -80,16 +88,15 @@ export default {
 				{
 					src: require('../../assets/myPhotos/20.jpg'),
 				},
-				
 			],
+			revealList:[]
 		}
 	},
 	components: {
 
 	},
 	created(){
-		console.log(this.initList(),6666)
-	
+		this.revealList = this.initList()
 	},
 	mounted() {
 		this.scrollReveal.reveal('.reveal-top', {
@@ -116,15 +123,24 @@ export default {
 			initList(){
 				let arr = []
 				let arr0 = [],arr1 = [],arr2 = [],arr3 = [];
-				this.imgList.forEach((item,i)=>{
-					for(let k=0;k<4;k++){
-						if(i%k==k){
-							console.log(i,k)
-							// arr[k].push(item)
-						}
+				this.imgList.map((item,i)=>{
+					if(i%4==0){
+						arr0.push(item)
+					}
+					if(i%4==1){
+						arr1.push(item)
+					}
+					if(i%4==2){
+						arr2.push(item)
 					}	
+					if(i%4==3){
+						arr3.push(item)
+					}
 				});
-				console.log(arr0)
+				arr[0] = arr0;
+				arr[1] = arr1;
+				arr[2] = arr2;
+				arr[3] = arr3;
 				return arr
 		},
 	}
@@ -138,6 +154,34 @@ export default {
 	padding: 20px;
 	.list{
 		width: 100%;
+		.reveal-top{
+			margin-bottom: 20px;
+		}
+		.card-box{
+			width: 100%;
+			height: 100%;
+			background:#fff;
+			.img-box{
+				padding: 10upx;
+				margin-bottom: 10upx;
+				.img{
+					display: block;
+					padding: 10px;
+				}
+			}
+			.picinfo{
+				h3{
+					border-bottom: #ccc 1px solid;
+					padding: 20px 0;
+					margin: 0 20px;
+				}
+				span{
+					padding: 20px;
+					display: block;
+					color: #666;
+				}
+			}
+		}
 	}
 }
 </style>
