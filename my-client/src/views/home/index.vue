@@ -261,8 +261,8 @@
 
 <script>
 import Vue from 'vue'
-import { Carousel, Image, Row, Col, Tabs, Collapse, Card } from 'element-ui';
-Vue.use(Carousel, Image, Row, Col, Tabs, Collapse, Card)
+import { Carousel, Image, Row, Col, Tabs, Collapse, Card, Button } from 'element-ui';
+Vue.use(Carousel, Image, Row, Col, Tabs, Collapse, Card, Button)
 
 export default {
   name: 'home',
