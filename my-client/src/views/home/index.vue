@@ -157,13 +157,15 @@
                 <router-link class="linkto iconfont iconshouye" title="网站地址" to="/"></router-link>
               </li>
               <li>
-                <router-link class="linkto iconfont iconyouxiang-" title="我的邮箱" to="/"></router-link>
+                <a  class="linkto iconfont iconyouxiang-" target="_blank" title="我的邮箱" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2357356553@qq.com"></a>
+                <!--<router-link class="linkto iconfont iconyouxiang-" title="我的邮箱" to="/"></router-link>-->
               </li>
               <li>
-                <router-link class="linkto iconfont iconicon" title="QQ联系我" to="/"></router-link>
+                <a  class="linkto iconfont iconicon" target="_blank" title="QQ联系我" href="http://wpa.qq.com/msgrd?v=3&uin=2357356553&site=qq&menu=yes"></a>
+                <!--<router-link class="linkto iconfont iconicon" title="QQ联系我" to="/"></router-link>-->
               </li>
               <li>
-                <router-link class="linkto iconfont iconweixin" title="网站地址" to="/"></router-link>
+                <router-link class="linkto iconfont iconweixin" title="关注我的微信" to="/"></router-link>
               </li>
             </ul>
           </div>
