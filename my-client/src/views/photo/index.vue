@@ -103,7 +103,7 @@ export default {
 			// 动画的时长
 			duration: 1000,
 			// 延迟时间
-			delay: 0,
+			delay: 500,
 			// 动画开始的位置，'bottom', 'left', 'top', 'right'
 			origin: 'bottom',
 			// 回滚的时候是否再次触发动画

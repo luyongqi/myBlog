@@ -6,7 +6,8 @@
                 <template v-for="(item,index) in navList">
 
                     <el-menu-item :index="item.url" :key="index" v-if="item.subList.length==0" :route="item.url" @click="closeSlider">
-                        <i class="el-icon-setting"></i>
+                        <!--<i  class="iconfont" :class="item.icon"></i>-->
+
                         <span class="link">
                             {{item.title}}
                         </span>
@@ -14,7 +15,8 @@
 
                     <el-submenu :index="item.url" :key="index+'1'" v-if="item.subList.length>0">
                         <template slot="title">
-                            <i class="el-icon-location"></i>
+                            <!--<i class="iconfont" :class="item.icon"></i>-->
+
                             <span class="link">{{item.title}}</span>
                             <!--<router-link class="link" :to="item.url">
                                 {{item.title}}
@@ -47,21 +49,25 @@ export default {
                 {
                     title: '网站首页',
                     url: '/home',
+                    icon:"iconiconfontzhizuobiaozhun023101",
                     subList: []
                 },
                 {
                     title: '我的相册',
                     url: '/photo',
+                    icon:"iconxiangce",
                     subList: []
                 },
                 {
                     title: '我的日记',
                     url: '/dirary',
+                    icon:"iconbijiben",
                     subList: []
                 },
                 {
                     title: '学无止境',
                     url: '/study',
+                    icon:"iconxuexi",
                     subList: [
                         {
                             title: 'css3|html5',
@@ -80,16 +86,19 @@ export default {
                 {
                     title: '关于我',
                     url: '/about',
+                    icon:"iconwode",
                     subList: []
                 },
                 {
                     title: '时间轴',
                     url: '/timer',
+                    icon:"iconshijian",
                     subList: []
                 },
                 {
                     title: '留言',
                     url: '/word',
+                    icon:"iconmessage",
                     subList: []
                 },
             ]
@@ -120,10 +129,17 @@ export default {
 
 <style lang="scss" scoped>
 .slider {
+    .iconiconfontzhizuobiaozhun023101,.iconbijiben,.iconwode{
+        font-size:13px;
+    }
+    .iconxuexi,.iconxiangce{
+        font-size:17px;
+    }
     .el-menu-demo{
         width:30vw;
         text-align: left;
     }
+    
 }
 </style>
 

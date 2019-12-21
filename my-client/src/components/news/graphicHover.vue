@@ -41,6 +41,7 @@ export default {
           transform: scale(1.1);
         }
         .timg{
+          display: block;
           width: 100%;
           opacity: 0.7;
           transition: all 0.5s;
