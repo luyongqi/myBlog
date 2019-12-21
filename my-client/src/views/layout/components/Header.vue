@@ -13,29 +13,29 @@
 
                 <!--logo-->
                 <el-col :xs="16" :sm="18" :md="5" :lg="4" :xl="4">
-                    <div class="logo">卢勇其个人博客</div>
+                    <div class="logo" @click="toIndex">卢勇其个人博客</div>
                 </el-col>
-
+                
                 <!--导航 -->
                 <el-col class="hidden-sm-and-down" :xs="0" :sm="18" :md="17" :lg="18" :xl="18">
                     <el-menu :default-active="activeIndex" background-color="#1C2327" text-color="#fff" default-active="0" active-text-color="#409eff" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                         <template v-for="(item,i) in navList">
-                            <el-menu-item :index="i+''" :key="i" v-if="item.subList.length==0" :route="item.url">
-                                <router-link class="link" :to="item.url">
+                            <el-menu-item :index="item.url" :key="i" v-if="item.subList.length==0" :route="item.url" >
+                                 <span class="link">
                                     {{item.title}}
-                                </router-link>
+                                </span>
                             </el-menu-item>
 
-                            <el-submenu :index="i+''" :key="i" v-if="item.subList.length>0">
+                            <el-submenu :index="item.url" :key="i" v-if="item.subList.length>0">
                                 <template slot="title">
-                                    <router-link class="link" :to="item.url">
+                                    <span class="link">
                                         {{item.title}}
-                                    </router-link>
+                                    </span>
                                 </template>
-                                <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="i+'-'+k" :route="p.url">
-                                    <router-link class="link" :to="p.url">
+                                <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="p.url" :route="p.url">
+                                    <span class="link">
                                         {{p.title}}
-                                    </router-link>
+                                    </span>
                                 </el-menu-item>
                             </el-submenu>
                         </template>
@@ -79,19 +79,19 @@ export default {
                 },
                 {
                     title: '学无止境',
-                    url: '/study',
+                    url: '',
                     subList: [
                         {
                             title: 'css3|html5',
-                            url: '/webDesign',
+                            url: '/study',
                         },
                         {
                             title: '网站建设',
-                            url: '/webDesign',
+                            url: '/web',
                         },
                         {
                             title: '推荐工具',
-                            url: '/webDesign',
+                            url: '/web',
                         },
                     ]
                 },
@@ -120,12 +120,19 @@ export default {
 
     },
     methods: {
+        // 回首页
+       toIndex(){
+         this.$router.push({path:"/"})
+       },
         hideToggle(){
             this.isOpen = !this.isOpen;
             this.$emit('click',this.isOpen)
         },
         handleSelect(key, keyPath) {
-            console.log(key, keyPath);
+            if(key==""){                  
+                return
+            }
+            this.$router.push(key)
         }
     }
 
@@ -200,6 +207,7 @@ export default {
     .logo {
         font-size: 22px;
         text-align: center;
+        cursor: pointer;
     } // 搜索
     .search {
         width: 60px;

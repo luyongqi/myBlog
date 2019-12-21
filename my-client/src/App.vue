@@ -24,6 +24,10 @@ export default {
     .el-card__header{
       padding:10px 0;
     }
+    // 请求 menu 菜单下边框
+    .el-menu--horizontal>.el-submenu.is-active .el-submenu__title{
+      border: none;
+    }
     .tabbox{
       .el-tabs__item{
           font-size: 16px;

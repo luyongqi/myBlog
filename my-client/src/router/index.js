@@ -39,11 +39,12 @@ export default new Router({
           name:'photo',
           component: Photo
         },
-        {
+        {                       //我的日记
           path: '/dirary', 
           name:'dirary',
           component: Dirary
         },
+       
         {
           path: '/study', 
           name:'study',

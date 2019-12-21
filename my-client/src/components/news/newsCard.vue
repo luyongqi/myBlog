@@ -70,7 +70,6 @@ export default {
          background: #fff;
         .box-card {
             overflow: hidden;
-            border-bottom: #eee 1px dashed;
             position: relative;
         }
     }

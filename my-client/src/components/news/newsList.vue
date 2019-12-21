@@ -1,62 +1,65 @@
 <template>
-    <div>
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-            <h3 class="blogtitle">
-                <b>【顶】</b>
-                <router-link class="btitle" to=''>作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</router-link>
-            </h3>
-            <span class="blogpic">
-                <i>
-                    <router-link to=''>设计心得</router-link>
-                </i>
-                <router-link to='' title='作为一个设计师,如果遭到质疑你是否能恪守自己的原则?'>
-                    <el-image class="imgscale" src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" fit="cover"></el-image>
-                </router-link>
-            </span>
-            <p class="blogtext">
-                就拿我自己来说吧，有时候会很矛盾，设计好的作品，不把它分享出来，会觉得待在自己电脑里面实在是没有意义。干脆就发布出去吧。我也害怕收到大家不好的评论，有些评论，可能说者无意，但是对于每一个用心的站长来说，都会受很深
-            </p>
-            <p class="bloginfo">
-                <i class="avatar">
-                    <el-image class="aimg" src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" fit="cover"></el-image>
-                </i>
-                <span>2018-11-08</span>
-                <span>
-                    【
-                    <router-link class="type" to="">设计心得</router-link>】
+    <div class="bloglist">
+        <div class="box-card" v-for="(o,i) in 4" :key="i">
+            <el-card :body-style="{ padding: '0px' }">
+                <h3 class="blogtitle">
+                    <b>【顶】</b>
+                    <router-link class="btitle" to=''>作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</router-link>
+                </h3>
+                <span class="blogpic">
+                    <i>
+                        <router-link to=''>设计心得</router-link>
+                    </i>
+                    <router-link to='' title='作为一个设计师,如果遭到质疑你是否能恪守自己的原则?'>
+                        <el-image class="imgscale" :src="img2" fit="cover"></el-image>
+                    </router-link>
                 </span>
-                <el-button type="text" class="more">阅读更多</el-button>
-            </p>
+                <p class="blogtext">
+                    就拿我自己来说吧，有时候会很矛盾，设计好的作品，不把它分享出来，会觉得待在自己电脑里面实在是没有意义。干脆就发布出去吧。我也害怕收到大家不好的评论，有些评论，可能说者无意，但是对于每一个用心的站长来说，都会受很深
+                </p>
+                <p class="bloginfo">
+                    <i class="avatar">
+                        <el-image class="aimg" src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" fit="cover"></el-image>
+                    </i>
+                    <span>2018-11-08</span>
+                    <span>
+                        【
+                        <router-link class="type" to="">设计心得</router-link>】
+                    </span>
+                    <el-button type="text" class="more">阅读更多</el-button>
+                </p>
 
-        </el-card>
+            </el-card>
+        </div>
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import { Image,  Card, Button } from 'element-ui';
-Vue.use( Image,  Card, Button)
+import { Image, Card, Button } from 'element-ui';
+Vue.use(Image, Card, Button)
 
 export default {
     data() {
         return {
-
+            img2: require('@/assets/images/h2.jpg'),
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-    .el-card.is-always-shadow {
-        box-shadow: none;
-        border: none;
-    }
+.el-card.is-always-shadow {
+    box-shadow: none;
+    border: none;
+}
+
+.bloglist {
     .box-card {
         overflow: hidden;
         border-bottom: #eee 1px dashed;
         padding-bottom: 20px;
         position: relative;
-        margin-top: 20px;
         &:hover .blogtitle .btitle {
             color: #337ab7;
         } // 标题
@@ -107,6 +110,7 @@ export default {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             margin-top: 20px;
+            line-height: 1.5;
         } // 用户信息
         .bloginfo {
             margin-top: 20px;
@@ -150,6 +154,7 @@ export default {
             border-radius: 3px;
         }
     }
+}
 </style>
 
 

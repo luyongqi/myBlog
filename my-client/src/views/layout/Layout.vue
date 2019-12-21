@@ -3,7 +3,7 @@
     <Slider ref="slider" @click="closeSlider"></Slider>
     <Header ref="header" @click="getOpenStatus"></Header>
     <section class="main-container">
-      <app-main></app-main>
+      <app-main ref="main"></app-main>
     </section>
     <Footer></Footer>
   </div>
@@ -29,7 +29,7 @@ export default {
    
   },
   created(){
-  
+    console.log(this.$refs.header)
   },
   methods:{
     // 点击选项 关闭侧边栏

@@ -2,17 +2,17 @@
     <div class="slider">
         <el-drawer  :visible.sync="drawer" direction="rt1" size="100%" :before-close="handleClose">
 
-            <el-menu default-active="2" class="el-menu-demo" @open="handleOpen" @close="handleClose">
+            <el-menu default-active="0" class="el-menu-demo"  @select="handleSelect">
                 <template v-for="(item,index) in navList">
 
-                    <el-menu-item :index="index+''" :key="index" v-if="item.subList.length==0" :route="item.url" @click="closeSlider">
+                    <el-menu-item :index="item.url" :key="index" v-if="item.subList.length==0" :route="item.url" @click="closeSlider">
                         <i class="el-icon-setting"></i>
-                        <router-link class="link" :to="item.url">
+                        <span class="link">
                             {{item.title}}
-                        </router-link>
+                        </span>
                     </el-menu-item>
 
-                    <el-submenu :index="index+''" :key="index+'1'" v-if="item.subList.length>0">
+                    <el-submenu :index="item.url" :key="index+'1'" v-if="item.subList.length>0">
                         <template slot="title">
                             <i class="el-icon-location"></i>
                             <span class="link">{{item.title}}</span>
@@ -21,10 +21,10 @@
                             </router-link>-->
                         </template>
 
-                        <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="index+'-'+k" :route="p.url" @click="closeSlider">
-                            <router-link class="link" :to="p.url">
+                        <el-menu-item v-for="(p,k) in item.subList" :key="k" :index="p.url" :route="p.url" @click="closeSlider">
+                            <span class="link">
                                 {{p.title}}
-                            </router-link>
+                            </span>
                         </el-menu-item>
                     </el-submenu>
                 </template>
@@ -103,15 +103,16 @@ export default {
         handleClose(done) {
             this.$confirm('确认关闭？')
                 .then(_ => {
+                    this.$emit('click',false)
                     done();
                 })
                 .catch(_ => { });
         },
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
+        handleSelect(key, keyPath) {
+            if(key=="/study"){                  //有二级导航的、点一级导航不跳转
+                return
+            }
+            this.$router.push(key)
         }
     }
 }

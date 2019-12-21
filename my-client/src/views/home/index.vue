@@ -99,45 +99,9 @@
           </div>
 
           <!--最新博文-->
-          <div class="new-list-box whitebg">
-            <!--标题-->
-            <el-card class="box-card" :body-style="{ padding: '0px' }" >
-              <div slot="header" class="rtitle">
-                <span>最新博文</span>
-              </div>
-              <!--文章列表-->
-              <div class="bloglist">
-                <el-card class="box-card" :body-style="{ padding: '0px' }"  v-for="o in 4" :key="o">
-                      <h3 class="blogtitle">
-                        <b>【顶】</b>
-                        <router-link class="btitle" to=''>作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</router-link>
-                      </h3>
-                      <span class="blogpic">
-                        <i>
-                          <router-link to=''>设计心得</router-link>
-                        </i>
-                         <router-link to='' title='作为一个设计师,如果遭到质疑你是否能恪守自己的原则?'>
-                           <el-image class="imgscale" :src="img2" fit="cover" ></el-image>
-                         </router-link>
-                      </span>
-                      <p class="blogtext">
-                        就拿我自己来说吧，有时候会很矛盾，设计好的作品，不把它分享出来，会觉得待在自己电脑里面实在是没有意义。干脆就发布出去吧。我也害怕收到大家不好的评论，有些评论，可能说者无意，但是对于每一个用心的站长来说，都会受很深 
-                      </p>
-                      <p class="bloginfo">
-                          <i class="avatar">
-                            <el-image class="aimg" src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" fit="cover" ></el-image>
-                          </i>
-                          <span>2018-11-08</span>
-                          <span>
-                            【<router-link class="type" to="">设计心得</router-link>】
-                          </span>
-                          <el-button type="text" class="more">阅读更多</el-button>
-                      </p>
-                      
-                 </el-card>
-              </div>
-            </el-card>
-          </div>
+          <NewsCard title="最新博客">
+              <NewsList ></NewsList>
+          </NewsCard>
 
         </div>
       </el-col>
@@ -213,26 +177,20 @@
               </ul>
             </el-card>
           </div>
-          <!--站长推荐-->
-          <div class="whitebg recommend">
-            <el-card class="box-card" :body-style="{ padding: '0px' }" >
-              <div slot="header" class="rtitle">
-                <span>站长推荐</span>
-              </div>
-              <section class="topnews">
-                  <router-link to="">
-                      <el-image class="timg" :src="img1" fit="cover"></el-image>
-                      <span>安静地做一个爱设计的女子</span>
-                  </router-link>
-              </section>
-              <ul>
-                <li v-for="(k,i) in 6" :key="i">
-                  <i>{{i+1}}</i>
-                  <router-link to="">十条设计原则教你学会如何设计网页布局!</router-link>
-                </li>
-              </ul>
-            </el-card>
-          </div>
+          <!--点击排行-->
+          <NewsCard title="点击排行">
+            <div>
+              <GraphicHover></GraphicHover>
+              <RankList></RankList>
+            </div>
+          </NewsCard>
+         <!--站长推荐-->
+         <NewsCard title="站长推荐">
+            <div>
+              <GraphicHover></GraphicHover>
+              <GraphicItem v-for="(o,i) in 4" :key="i"></GraphicItem>
+            </div>
+          </NewsCard>
           <!--友情链接-->
           <div class="whitebg links">
             <el-card class="box-card" :body-style="{ padding: '0px' }" >
@@ -263,6 +221,12 @@
 import Vue from 'vue'
 import { Carousel, Image, Row, Col, Tabs, Collapse, Card, Button } from 'element-ui';
 Vue.use(Carousel, Image, Row, Col, Tabs, Collapse, Card, Button)
+
+import NewsCard from '@/components/news/newsCard'
+import NewsList from '@/components/news/newsList'
+import RankList from '@/components/news/rankList'
+import GraphicHover from '@/components/news/graphicHover'
+import GraphicItem from '@/components/news/graphicItem'
 
 export default {
   name: 'home',
@@ -340,6 +304,9 @@ export default {
 
       ]
     }
+  },
+  components:{
+    NewsCard,NewsList,RankList,GraphicHover,GraphicItem
   },
   computed: {
 
@@ -696,115 +663,6 @@ export default {
     } 
 
     // 最新博文
-    .new-list-box {
-      padding-bottom: 40px;
-      .bloglist{
-        .box-card{
-            overflow: hidden;
-            border-bottom: #eee 1px dashed;
-            padding-bottom: 20px;
-            position: relative;
-            min-height: 120px;
-            &:hover .blogtitle .btitle {
-              color: #337ab7;
-           }
-          // 标题
-          .blogtitle{
-            font-size: 18px;
-            margin-bottom: 0 0 10px 0;
-            b{
-              color: red;
-            }
-            .btitle{
-              transition: all 0.5s ease;
-            }
-          }
-          // 文章主图
-          .blogpic {
-              float: left;
-              width: 23.2%;
-              margin-right: 20px;
-              display: block;
-              overflow: hidden;
-              border-radius: 3px;
-              position: relative;
-              & i{
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 9;
-                font-style: normal;
-                padding: 3px 5px;
-                background: rgba(18,182,221,.8);
-                font-size: 14px;
-                color: #fff;
-              }
-              .imgscale{
-                display: block;
-                width: 100%;
-              }
-              .imgscale:hover{
-                transform: scale(1.1)
-              }
-          }
-          // 文章内容
-          .blogtext {
-            font-size: 14px;
-            color: #666;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            margin-top: 20px;
-          }
-          // 用户信息
-          .bloginfo {
-            margin-top: 20px;
-            overflow: hidden;
-            color: #999;
-            line-height: 34px;
-            .avatar {
-              position: relative;
-              float: left;
-              width: 34px;
-              height: 34px;
-              border-radius: 100%;
-              padding: 2px;
-              display: block;
-              background: -webkit-linear-gradient(bottom left, rgba(0,153,255,.9), rgba(42,228,197,.7));
-              background: -o-linear-gradient(bottom left, rgba(0,153,255,.9), rgba(42,228,197,.7));
-              background: linear-gradient(to top right, rgba(0,153,255,.9), rgba(42,228,197,.7));
-              overflow: hidden;
-              .aimg{
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-              }  
-            }
-            span{
-                  margin: 0 5px;
-                  .type{
-                    color: #096;
-                  }
-              }
-          }
-          // 阅读按钮
-          .more{
-                display: block;
-                right: 10px;
-                bottom: 20px;
-                position: absolute;
-                font-size: 15px;
-                padding: 6px 10px;
-                background: #12b7de;
-                color: #fff;
-                border-radius: 3px;
-          }
-        }
-      }
-    }
 
   } 
   
@@ -955,78 +813,7 @@ export default {
         color: #000;
       }
     }
-    // 站长推荐
-    .recommend{
-      .topnews {
-        display: block;
-        margin: 20px 0;
-        background: #000;
-        position: relative;
-        overflow: hidden;
-        border-radius: 3px;
-        max-height: 110px;
-        &:hover .timg{
-          opacity: 0.9;
-          transform: scale(1.1);
-        }
-        .timg{
-          width: 100%;
-          opacity: 0.7;
-          transition: all 0.5s;
-        }
-         span {
-            bottom: 0;
-            position: absolute;
-            bottom: 30%;
-            left: 0;
-            right: 0;
-            color: #FFF;
-            text-align: center;
-            font-size: 15px;
-            padding: 0 40px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-height: 22px;
-        }
-      }
-      ul>li{
-        height: 30px;
-        line-height: 30px;
-        margin-bottom: 10px;
-        padding-left: 5px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        color: #555;
-        &:hover{
-          color: #000;
-        }
-        &:nth-child(2n){
-          background:#f6f6f6;
-        }
-       &:first-child i, &:nth-child(2) i, &:nth-child(3) i {
-          background: #FF6600;
-        }
-        i{
-          display: block;
-          width: 16px;
-          height: 16px;
-          background: #B1B1B1;
-          float: left;
-          margin-top: 7px;
-          margin-right: 10px;
-          position: relative;
-          font-style: normal;
-          font-size: 9px;
-          color: #fff;
-          line-height: 16px;
-          text-align: center;
-        }
-      }
-    }
+   
     // 友情链接
     .links{
       
