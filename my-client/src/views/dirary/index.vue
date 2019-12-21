@@ -14,6 +14,12 @@
             <NewsCard title="最新博客">
               <NewsList ></NewsList>
             </NewsCard>
+
+            <el-pagination
+              background
+              layout="prev, pager, next"
+              :total="1000">
+            </el-pagination>
         </div>
       </el-col>
 
@@ -42,8 +48,8 @@
 
 <script>
 import Vue from 'vue'
-import {  Row, Col } from 'element-ui';
-Vue.use( Row, Col )
+import {  Row, Col, Pagination } from 'element-ui';
+Vue.use( Row, Col, Pagination )
 
 import NewsCard from '@/components/news/newsCard'
 import NewsList from '@/components/news/newsList'
