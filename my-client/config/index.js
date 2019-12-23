@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/v1':{
+        target: 'http://192.168.1.19:8280',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/v1': '/bmSrv/v1'   // 配置 /v1开头的接口 反向代理 前面拼上http://192.168.1.12:8287
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

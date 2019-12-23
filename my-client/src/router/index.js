@@ -33,43 +33,50 @@ export default new Router({
           path: '/home',
           name: 'home',
           component: Home,
+          meta: {title: '首页', icon: 'home'}
         },
         {
           path: '/photo', 
           name:'photo',
-          component: Photo
+          component: Photo,
+          meta: {title: '我的相册', icon: 'home'}
         },
         {                       //我的日记
           path: '/dirary', 
           name:'dirary',
-          component: Dirary
+          component: Dirary,
+          meta: {title: '我的日记', icon: 'home'}
         },
        
         {
           path: '/study', 
           name:'study',
-          component: Study
+          component: Study,
+          meta: {title: '学无止境', icon: 'home'}
         },
         {
           path: '/about', 
           name:'about',
-          component: About
+          component: About,
+          meta: {title: '关于我', icon: 'home'}
         },
         {
           path: '/timer', 
           name:'timer',
-          component: Timer
+          component: Timer,
+          meta: {title: '时间轴', icon: 'home'}
         },
         {
           path: '/word', 
           name:'word',
-          component: Word
+          component: Word,
+          meta: {title: '留言', icon: 'home'}
         },
         {
           path: '/404', 
           name:'404',
-          component: NotFound
-        },
+          component: NotFound,         
+        }
       ]
     },
   ]

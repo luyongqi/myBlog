@@ -15,11 +15,18 @@
               <NewsList ></NewsList>
             </NewsCard>
 
-            <el-pagination
-              background
-              layout="prev, pager, next"
-              :total="1000">
-            </el-pagination>
+            <!--分页-->
+            <div>
+              <el-pagination
+                background
+                layout="prev, pager, next"
+                prev-text="上一页"
+                next-text="下一页" 
+                page-size="10"
+                :total="20">
+              </el-pagination>
+            </div>
+            
         </div>
       </el-col>
 
@@ -75,6 +82,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  
   .page{
     padding: 20px;
     // 左侧
