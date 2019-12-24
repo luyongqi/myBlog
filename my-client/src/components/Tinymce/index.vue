@@ -82,8 +82,9 @@
         const _this = this
         window.tinymce.init({
           selector: `#${this.tinymceId}`,
-          width: this.width,
+          // width: this.width,              //固定宽时
           height: this.height,
+          resize: true,                     //宽度自适应
           language: 'zh_CN',
           body_class: 'panel-body ',
           object_resizing: false,

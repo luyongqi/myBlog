@@ -21,6 +21,7 @@ export default {
   font-size: 15px;
   color: #2c3e50;
   background: #E9EAED;
+  line-height: 1.5;
   .el-card__header {
     padding: 10px 0;
   }

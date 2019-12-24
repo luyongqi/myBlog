@@ -18,7 +18,7 @@
                 
                 <!--导航 -->
                 <el-col class="hidden-sm-and-down" :xs="0" :sm="18" :md="17" :lg="18" :xl="18">
-                    <el-menu :default-active="activeIndex" background-color="#1C2327" text-color="#fff" default-active="0" active-text-color="#409eff" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                    <el-menu :default-active="$route.path" background-color="#1C2327" text-color="#fff"  active-text-color="#409eff" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                         <template v-for="(item,i) in navList">
                             <el-menu-item :index="item.url" :key="i" v-if="item.subList.length==0" :route="item.url" >
                                  <span class="link">
@@ -60,7 +60,6 @@ export default {
     data() {
         return {
             isOpen:false,     //是否打开侧边栏
-            activeIndex: '1',
             navList: [
                 {
                     title: '网站首页',

@@ -2,7 +2,7 @@
     <div class="slider">
         <el-drawer  :visible.sync="drawer" direction="rt1" size="100%" :before-close="handleClose">
 
-            <el-menu default-active="0" class="el-menu-demo"  @select="handleSelect">
+            <el-menu :default-active="$route.path" class="el-menu-demo" mode="vertical"  @select="handleSelect">
                 <template v-for="(item,index) in navList">
 
                     <el-menu-item :index="item.url" :key="index" v-if="item.subList.length==0" :route="item.url" @click="closeSlider">
@@ -71,7 +71,7 @@ export default {
                     subList: [
                         {
                             title: 'css3|html5',
-                            url: '/webDesign',
+                            url: '/study',
                         },
                         {
                             title: '网站建设',
