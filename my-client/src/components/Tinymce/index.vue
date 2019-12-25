@@ -18,9 +18,10 @@
   ];
   const toolbar = [
     `bold italic underline strikethrough alignleft aligncenter
-  alignright outdent indent  blockquote undo redo removeformat`,
+  alignright outdent indent  blockquote undo redo removeformat code`,
+      `fontsizeselect fontselect`,
     `hr bullist numlist link image charmap	 preview anchor pagebreak
-    fullscreen insertdatetime media table forecolor backcolor`
+    fullscreen insertdatetime media table forecolor backcolor save`
   ];
   export default {
     name: 'tinymce',
@@ -88,8 +89,10 @@
           language: 'zh_CN',
           body_class: 'panel-body ',
           object_resizing: false,
+          font_formats: '微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif',
+          fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px',
           toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
-          menubar: false,
+          menubar: true,                              //显示菜单栏
           plugins: plugins,
           end_container_on_empty_block: true,
           powerpaste_word_import: 'clean',
@@ -100,6 +103,7 @@
           imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
           default_link_target: '_blank',
           link_title: false,
+          save_onsavecallback: function () { console.log('保存') },
           init_instance_callback: editor => {
             if (_this.value) {
               editor.setContent(_this.value)
@@ -118,6 +122,7 @@
         }
       },
       setContent(value) {
+        console.log(value)
         window.tinymce.get(this.tinymceId).setContent(value)
       },
       getContent() {
