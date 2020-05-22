@@ -29,16 +29,15 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
-  //数据库配置
-  const mongoose = {
-    url: 'mongodb://127.0.0.1/example',
-    options: {},
-    plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
-  }
-
+  
   return {
     ...config,
     ...userConfig,
-    ...mongoose
   };
+};
+
+exports.mongoose = {
+  url: 'mongodb://127.0.0.1/example',
+  options: {},
+  plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
 };
