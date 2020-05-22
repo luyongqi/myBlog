@@ -1,3 +1,10 @@
+/*
+ * @Author: 卢勇其
+ * @Date: 2020-05-22 19:45:39
+ * @LastEditors: 卢勇其
+ * @LastEditTime: 2020-05-22 20:33:27
+ * @Description: file content
+ */ 
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
@@ -22,9 +29,16 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
+  //数据库配置
+  const mongoose = {
+    url: 'mongodb://127.0.0.1/example',
+    options: {},
+    plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
+  }
 
   return {
     ...config,
     ...userConfig,
+    ...mongoose
   };
 };
