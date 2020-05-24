@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-24 15:11:24
  * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-24 15:28:30
+ * @LastEditTime: 2020-05-24 19:37:26
  * @Description: file content
  */ 
 'use strict';
@@ -25,16 +25,16 @@ class UserService extends Service {
 
   async updateUser() {
     const result = await this.ctx.model.User.updateOne({
-        "_id":"5c00f0ce862e9227acb56d22"
+        "_id":"5eca2324ab4d7d326839c253"
     },{
-        password:"cccccccccc"
+        password:"a1234"
     });
     return result
   }
 
   async deleteUser(){
     const result = await this.ctx.model.User.deleteOne({
-        "_id":"5c00f0ce862e9227acb56d22"
+        "_id":"5eca2324ab4d7d326839c253"
     });
     return result
   }

@@ -2,12 +2,12 @@
  * @Author: 卢勇其
  * @Date: 2020-05-23 19:59:05
  * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-23 21:54:34
+ * @LastEditTime: 2020-05-24 20:40:46
  * @Description: file content
  */ 
 import React, { useState } from 'react'
 import 'antd/dist/antd.css'
-import '../static/css/Login.css'
+import '../static/css/Login.scss'
 import { Card, Input, Button, Spin } from 'antd'
 import { UserOutlined,LockOutlined } from '@ant-design/icons';
 
