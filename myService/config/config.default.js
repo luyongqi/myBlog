@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-22 19:45:39
  * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-22 20:47:01
+ * @LastEditTime: 2020-05-24 13:59:40
  * @Description: file content
  */ 
 /* eslint valid-jsdoc: "off" */
@@ -26,15 +26,16 @@ module.exports = appInfo => {
   config.middleware = [];
 
   config.mongoose = {
-    url: 'mongodb://127.0.0.1/example',
+    url: 'mongodb://127.0.0.1/blogDB',
     options: {},
-    plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
+    // plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
   };
   
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
   };
+  
   
   return {
     ...config,
