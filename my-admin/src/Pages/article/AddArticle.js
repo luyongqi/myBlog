@@ -1,15 +1,17 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-23 21:47:39
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-23 23:04:23
+ * @LastEditors: your name
+ * @LastEditTime: 2020-05-25 17:40:32
  * @Description: file content
  */ 
 import React, {useState} from 'react'
 import marked from 'marked'
-import '../static/css/AddArticle.css'
+import hljs from "highlight.js";
+import 'highlight.js/styles/monokai-sublime.css';
+import '../../static/css/AddArticle.css'
 import { Row, Col, Input, Select, Button, DatePicker } from 'antd'
-import { T } from 'antd/lib/upload/utils'
+
 const { Option } = Select
 const { TextArea } = Input
 
@@ -33,7 +35,10 @@ function AddArticle(){
         tables:true,
         breaks:false,
         smartLists:true,
-        smartypants:false
+        smartypants:false,
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
     })
 
     const changeContent = (e)=>{

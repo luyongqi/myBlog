@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-23 21:18:16
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-23 22:16:44
+ * @LastEditors: your name
+ * @LastEditTime: 2020-05-25 18:00:52
  * @Description: file content
  */ 
 import React, {useState} from 'react';
@@ -15,7 +15,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import '../static/css/AdminIndex.css'
+import '../../static/css/AdminIndex.css'
 import AddArticle from './AddArticle'
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -25,7 +25,7 @@ function AdminIndex(){
   
     const [collapsed,setCollapsed] = useState(false)
     const onCollapse = collapsed => {
-    setCollapsed( collapsed );
+        setCollapsed( collapsed );
     };
     return (
         <Layout style={{ minHeight: '100vh' }}>
