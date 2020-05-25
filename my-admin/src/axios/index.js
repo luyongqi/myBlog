@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-25 14:41:05
- * @LastEditors: your name
- * @LastEditTime: 2020-05-25 15:25:51
+ * @LastEditors: 卢勇其
+ * @LastEditTime: 2020-05-25 21:41:49
  */ 
 import axios from 'axios';
 
@@ -47,5 +47,5 @@ instance.interceptors.response.use(
   }
 )
 
-module.exports = instance
+export default instance
 
