@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-23 21:18:16
  * @LastEditors: your name
- * @LastEditTime: 2020-05-25 18:00:52
+ * @LastEditTime: 2020-05-30 10:24:35
  * @Description: file content
  */ 
 import React, {useState} from 'react';
@@ -15,8 +15,8 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import '../../static/css/AdminIndex.css'
-import AddArticle from './AddArticle'
+import './ArticleIndex.css'
+import AddArticle from '../AddArticle'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;

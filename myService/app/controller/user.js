@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-24 13:49:03
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-24 15:24:45
+ * @LastEditors: your name
+ * @LastEditTime: 2020-05-30 17:15:33
  * @Description: file content
  */ 
 
@@ -11,6 +11,7 @@
 const Controller = require('egg').Controller;
 
 class UserController extends Controller {
+
     async findUser() {
         const res = await this.service.user.findUser();
         console.log(res)

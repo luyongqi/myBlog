@@ -2,20 +2,16 @@
  * @Author: 卢勇其
  * @Date: 2020-05-25 15:02:28
  * @LastEditors: your name
- * @LastEditTime: 2020-05-25 18:00:59
+ * @LastEditTime: 2020-05-30 18:04:56
  */ 
-import { instance } from '../axios'
+import instance  from '../axios'
 
-const prefix = 'api/usercenter'
+const prefix = 'admin'
 
-// 模块管理
-export const fetchModuleList = (data) => instance.post(`/${prefix}/resource/list`, data) // 获取模块列表
-export const fetchModuleDelete = (data) => instance.post(`/${prefix}/resource/delete`, data) // 删除模块
-export const fetchModuleDetail = (data) =>  instance.post(`/${prefix}/resource/detail`, data) // 获取模块详情
-export const fetchChangeModuleStatus = (data) =>  instance.post(`/${prefix}/resource/updateStatus`, data) // 修改模块显隐状态
-export const fetchModuleUpdateDetail = (data) =>  instance.post(`/${prefix}/resource/update`, data) // 修改模块详情
-export const fetchModuleAdd = (data) =>  instance.post(`/${prefix}/resource/save`, data) // 新增模块
-export const fetchButtonList = (data) =>  instance.post(`/${prefix}/resource/button/list`, data) // 按钮权限列表
+// 文章管理
+export const addArticle = (data) => instance.post(`/${prefix}/article/addArticle`, data)     //添加文章
+export const getArticleDetail = (_id) => instance.get(`/${prefix}/article/getArticleDetail/${_id}`) // 获取文章详情
+
 
 // 角色管理
 export const fetchRoleList = (data) =>  instance.post(`/${prefix}/role/list`, data) // 角色列表

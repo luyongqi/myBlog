@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-22 19:45:39
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-25 21:47:30
+ * @LastEditors: your name
+ * @LastEditTime: 2020-05-30 17:09:02
  * @Description: file content
  */ 
 'use strict';
@@ -11,10 +11,6 @@
  * @param {Egg.Application} app - egg application
  */
 module.exports = app => {
-  const { router, controller } = app;
-  router.get('/', controller.home.index);
-  router.get('/api/findUser', controller.user.findUser);
-  router.get('/addUser', controller.user.addUser);
-  router.get('/updateUser', controller.user.updateUser);
-  router.get('/deleteUser', controller.user.deleteUser);
+  require('./router/admin')(app)
+  require('./router/client')(app)
 };
