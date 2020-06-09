@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-22 19:45:39
  * @LastEditors: your name
- * @LastEditTime: 2020-05-30 12:01:43
+ * @LastEditTime: 2020-06-09 15:15:55
  * @Description: file content
  */ 
 /* eslint valid-jsdoc: "off" */
@@ -28,6 +28,20 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [];
+
+  // egg 默认开启防止 xss 攻击 和 csrf 攻击
+  config.security= {
+    csrf : {
+      enable: false,
+      // headerName: 'x-csrf-token',           // 自定义请求头
+    },
+    domainWhiteList: ['http://localhost:3000']
+  };
+
+  config.cors = {
+     origin:'*',
+     allowMethods:'GET,HEAD,POST,DELETE,PATCH,OPTIONS'
+  };
 
   config.static = {
     // 静态化访问前缀,如：`http://127.0.0.1:7001/static/images/logo.png`

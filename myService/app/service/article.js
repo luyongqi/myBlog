@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-30 16:43:29
  * @LastEditors: your name
- * @LastEditTime: 2020-05-30 17:28:44
+ * @LastEditTime: 2020-06-09 15:27:41
  */ 
 'use strict';
 
@@ -16,8 +16,8 @@ class ArticleService extends Service {
         return result;
     }
 
-    async addArticle() {           //添加文章 （post请求）
-        let query = this.ctx.request.body()
+    async addArticles() {           //添加文章 （post请求）
+        let query = this.ctx.request.body
         const user = new this.ctx.model.Article(query)
         user.save();
     }
