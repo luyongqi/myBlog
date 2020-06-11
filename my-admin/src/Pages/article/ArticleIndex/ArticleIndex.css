@@ -7,3 +7,9 @@
   .site-layout .site-layout-background {
     background: #fff;
   }
+
+  .logo{
+    font-size: 20px;
+    color: #fff;
+    padding-left: 20px;
+  }
