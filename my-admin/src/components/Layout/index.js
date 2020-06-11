@@ -1,10 +1,11 @@
 /*
  * @Author: 卢勇其
- * @Date: 2020-05-23 21:18:16
- * @LastEditors: your name
- * @LastEditTime: 2020-06-11 17:50:28
- * @Description: file content
+ * @Date: 2020-06-11 19:33:47
+ * @LastEditors: 卢勇其
+ * @LastEditTime: 2020-06-11 20:43:21
+ * @Description: 首页
  */ 
+
 import React, {useState} from 'react';
 import { Route } from 'react-router-dom'
 import { Layout, Menu, Breadcrumb } from 'antd';
@@ -15,18 +16,20 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import './ArticleIndex.css'
-import AddArticle from '../AddArticle'
+import './index.scss'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-function AdminIndex(){
-  
-    const [collapsed,setCollapsed] = useState(false)
+function LayoutIndex(props){
+    const [collapsed,setCollapsed] = useState(false)   //是否折叠
+    const [currentPosition,setPosition] = useState('工作台')
+
+
     const onCollapse = collapsed => {
         setCollapsed( collapsed );
     };
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             
@@ -77,23 +80,24 @@ function AdminIndex(){
 
             <Layout className="site-layout">
                 {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
+
                 <Content style={{ margin: '0 16px' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                     <Breadcrumb.Item>后台管理系统</Breadcrumb.Item>
-                    <Breadcrumb.Item>工作台</Breadcrumb.Item>
+                    <Breadcrumb.Item>{currentPosition}</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                        <div>
-                            <Route path='/index/' exact component={AddArticle}/>
-                        </div>
+                        {props.children}
                     </div>
                 </Content>
+
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
             </Layout>
+
         </Layout>
     );
 }
 
 
 
-export default AdminIndex
+export default LayoutIndex

@@ -2,25 +2,27 @@
  * @Author: 卢勇其
  * @Date: 2020-05-23 19:59:05
  * @LastEditors: 卢勇其
- * @LastEditTime: 2020-05-25 22:11:39
+ * @LastEditTime: 2020-06-11 21:57:18
  * @Description: file content
  */ 
 import React, { useState } from 'react'
 import 'antd/dist/antd.css'
-import '../static/css/Login.scss'
+import './index.scss'
 import { Card, Input, Button, Spin } from 'antd'
 import { UserOutlined,LockOutlined } from '@ant-design/icons';
-import { login } from '../apis/common.js'
+import { login } from '../../apis/common.js'
 
-function Login(){
+function Login(props){
     const [ userName, setUserName ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ isLoading, setIsLoading ] = useState(false)
 
+    // 登录
     const checkLogin = async ()=>{
         setIsLoading(true)
-        const res = await login()
-        console.log(res)
+        // const res = await login()
+        window.sessionStorage.setItem('userInfo',{token:'userToken'})
+        props.history.push('/home')
 
         setTimeout(()=>{
             setIsLoading(false)

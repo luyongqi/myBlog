@@ -1,15 +1,15 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-23 21:47:39
- * @LastEditors: your name
- * @LastEditTime: 2020-06-09 11:17:19
+ * @LastEditors: 卢勇其
+ * @LastEditTime: 2020-06-11 21:53:17
  * @Description: markdown 编辑器
  */ 
 import React, {useState, useEffect} from 'react'
 import marked from 'marked'
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
-import './AddArticle.css'
+import './index.scss'
 import { Row, Col, Input, Select, Button, DatePicker, message } from 'antd'
 import { addArticle } from '../../../apis/manage.js'
 
