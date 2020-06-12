@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-06-11 20:20:16
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-11 22:46:12
+ * @LastEditors: your name
+ * @LastEditTime: 2020-06-12 09:05:42
  * @Description: file content
  */ 
 
@@ -22,12 +22,12 @@ function RouterDom(props){
                 <Route path="/" exact  component={Login}/> 
                 <Route path="/login"  component={Login}/> 
                 <Route  path="/404" component={NotFound}/>
-            
+                
                 <LayoutIndex>
                     <Switch>
-                        <Route path="/home/" component={ Workbench }/>
+                        <Route path="/home/" exact component={ Workbench }/>
                         <Route path="/article/addArticle/" component={ AddArticle } />
-                        <Route component={NotFound}/>
+                        <Redirect to="/404"/>
                     </Switch>
                 </LayoutIndex>   
             </Switch>
