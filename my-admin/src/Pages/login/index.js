@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-23 19:59:05
  * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-11 21:57:18
+ * @LastEditTime: 2020-06-12 21:19:21
  * @Description: file content
  */ 
 import React, { useState } from 'react'
@@ -22,7 +22,7 @@ function Login(props){
         setIsLoading(true)
         // const res = await login()
         window.sessionStorage.setItem('userInfo',{token:'userToken'})
-        props.history.push('/home')
+        props.history.push('/admin/home')
 
         setTimeout(()=>{
             setIsLoading(false)

@@ -2,12 +2,12 @@
  * @Author: 卢勇其
  * @Date: 2020-06-11 19:33:47
  * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-11 20:43:21
+ * @LastEditTime: 2020-06-12 21:17:14
  * @Description: 首页
  */ 
 
 import React, {useState} from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   DesktopOutlined,
@@ -38,10 +38,12 @@ function LayoutIndex(props){
 
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="1" icon={<PieChartOutlined />}>
-                        工作台
+                        <Link to='/admin/home'>工作台</Link>  
                     </Menu.Item>
                     <SubMenu key="sub1" icon={<UserOutlined />} title="文章管理">
-                        <Menu.Item key="4">添加文章</Menu.Item>
+                        <Menu.Item key="4"> 
+                            <Link to='/admin/article/add'>添加文章</Link>
+                        </Menu.Item>
                         <Menu.Item key="5">文章列表</Menu.Item>
                         <Menu.Item key="6">分类管理</Menu.Item>
                         <Menu.Item key="7">标签管理</Menu.Item>

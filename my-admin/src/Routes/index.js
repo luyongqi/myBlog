@@ -12,6 +12,7 @@ import Workbench from '../Pages/workbench'
 import AddArticle from '../Pages/article/AddArticle'
 import EditArticle from '../Pages/article/EditArticle'
 
+
 export const mainRouter = [
     {
         pathname:'/login',
@@ -51,7 +52,7 @@ export const adminRouter = [
             },
             {
                 pathname:'/admin/article/list',
-                component:AddArticle,
+                component:ArticleList,
                 title:'文章列表',
                 icon:'profile',
             },
