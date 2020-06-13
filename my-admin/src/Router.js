@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-06-11 20:20:16
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-12 21:19:05
+ * @LastEditors: your name
+ * @LastEditTime: 2020-06-13 11:11:58
  * @Description: file content
  */ 
 
@@ -10,10 +10,10 @@
  import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
  import LayoutIndex from './components/Layout'     //页面布局
- import Login from './Pages/login'       //登录
- import Workbench from './Pages/workbench'  //工作台
+ import Login from './Pages/Login'       //登录
+ import Home from './Pages/Home'  //工作台
  import AddArticle from './Pages/article/AddArticle'   //添加文章
- import NotFound from './Pages/notFound' 
+ import NotFound from './Pages/NotFound' 
 
 function RouterDom(props){
     return (
@@ -25,7 +25,7 @@ function RouterDom(props){
                 
                 <LayoutIndex>
                     <Switch>
-                        <Route path="/admin/home/" exact component={ Workbench }/>
+                        <Route path="/admin/home/" exact component={ Home }/>
                         <Route path="/admin/article/add/" component={ AddArticle } />
                         <Redirect to="/404"/>
                     </Switch>
