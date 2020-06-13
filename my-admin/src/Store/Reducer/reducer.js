@@ -2,15 +2,14 @@
  * @Author: 卢勇其
  * @Date: 2020-06-12 17:25:53
  * @LastEditors: your name
- * @LastEditTime: 2020-06-12 17:25:54
+ * @LastEditTime: 2020-06-13 11:55:02
  */ 
 import actionType from '../Action/actionType'
 
 const initState = {
     isLoad: true,
     datalist: [
-        
-        
+   
     ]
 }
 
