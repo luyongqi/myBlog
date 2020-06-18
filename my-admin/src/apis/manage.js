@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-25 15:02:28
  * @LastEditors: your name
- * @LastEditTime: 2020-06-09 14:55:35
+ * @LastEditTime: 2020-06-18 17:16:58
  */ 
 import instance  from '../axios'
 
@@ -12,7 +12,9 @@ const prefix = 'admin'
 export const addArticle = (data) => instance.post(`/${prefix}/article/addArticle`, data)     //添加文章
 export const getArticleDetail = (_id) => instance.get(`/${prefix}/article/getArticleDetail/${_id}`) // 获取文章详情
 
-
+// 文章分类管理
+export const addCategory = (data) => instance.post(`/${prefix}/article/addCategory`, data)     //添加文章分类
+export const getAllCategory =() => instance.get(`/${prefix}/article/getAllCategory`)            //获取分类列表
 // 角色管理
 export const fetchRoleList = (data) =>  instance.post(`/${prefix}/role/list`, data) // 角色列表
 export const fetchRoleAdd = (data) =>  instance.post(`/${prefix}/role/save`, data) // 保存角色

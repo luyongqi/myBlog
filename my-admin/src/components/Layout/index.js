@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-06-11 19:33:47
  * @LastEditors: your name
- * @LastEditTime: 2020-06-16 17:35:33
+ * @LastEditTime: 2020-06-17 09:26:52
  * @Description: 首页
  */ 
 
@@ -69,7 +69,7 @@ function LayoutIndex(props){
     
     useEffect(()=>{                        //生命周期 componentWillMount
         const  menuTree = renderMenu(props.nav)      //菜单树
-
+        
         setMenuTree(menuTree)     //修改菜单树
     },[])
 
