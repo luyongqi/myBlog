@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-06-18 11:04:33
- * @LastEditors: your name
- * @LastEditTime: 2020-06-18 17:24:00
+ * @LastEditors: 卢勇其
+ * @LastEditTime: 2020-06-18 22:28:14
  */ 
 'use strict';
 
@@ -12,8 +12,9 @@ class ArticleCategoryService extends Service {
    
     async getAllCategory() {         //获取所有分类 (get请求)
         const query = this.ctx.query;
-        const result = await this.ctx.model.ArticleCategory.find({});
-        return result;
+        const res = await this.ctx.model.ArticleCategory.find({});
+       
+        return res
     }
 
     async addCategorys() {           //添加文章分类 （post请求）

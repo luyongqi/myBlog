@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-06-13 10:18:39
- * @LastEditors: your name
- * @LastEditTime: 2020-06-18 18:13:17
+ * @LastEditors: 卢勇其
+ * @LastEditTime: 2020-06-18 23:23:15
  */ 
 
 import React, { useState, useEffect } from 'react';
@@ -16,6 +16,7 @@ function ArticleCategory(){
     const [ visible, setVisible ] = useState(false)
     const [ category, setCategory ] = useState('')       //默认选择的分类
     const [ categoryList, setCategoryList ] = useState([])       //分类列表
+    const [ treeData, setTreeData ] = useState([])        //分类树形结构
     const [fileList, setFileList] = useState([          //图片列表
       {
         uid: '-1',
@@ -29,72 +30,6 @@ function ArticleCategory(){
     const [ previewImage, setPreviewImage ] = useState('')          //预览图片路径
     const [ previewTitle, setPreviewTitle ] = useState('')          //预览图片名称
 
-    const [ data, setData ] = useState(
-        [
-            {
-                key: 1,
-                name: 'John Brown sr.',
-                age: 60,
-                address: 'New York No. 1 Lake Park',
-                children: [
-                    {
-                    key: 11,
-                    name: 'John Brown',
-                    age: 42,
-                    address: 'New York No. 2 Lake Park',
-                    },
-                    {
-                    key: 12,
-                    name: 'John Brown jr.',
-                    age: 30,
-                    address: 'New York No. 3 Lake Park',
-                    children: [
-                        {
-                        key: 121,
-                        name: 'Jimmy Brown',
-                        age: 16,
-                        address: 'New York No. 3 Lake Park',
-                        },
-                    ],
-                    },
-                    {
-                    key: 13,
-                    name: 'Jim Green sr.',
-                    age: 72,
-                    address: 'London No. 1 Lake Park',
-                    children: [
-                        {
-                        key: 131,
-                        name: 'Jim Green',
-                        age: 42,
-                        address: 'London No. 2 Lake Park',
-                        children: [
-                            {
-                            key: 1311,
-                            name: 'Jim Green jr.',
-                            age: 25,
-                            address: 'London No. 3 Lake Park',
-                            },
-                            {
-                            key: 1312,
-                            name: 'Jimmy Green sr.',
-                            age: 18,
-                            address: 'London No. 4 Lake Park',
-                            },
-                        ],
-                        },
-                    ],
-                    },
-                ]
-            },
-            {
-                key: 2,
-                name: 'Joe Black',
-                age: 32,
-                address: 'Sidney No. 1 Lake Park',
-            },
-        ]
-    )
     const columns = [
         {
         title: 'ID',
@@ -117,7 +52,7 @@ function ArticleCategory(){
         {
           title: '链接地址',
           dataIndex: 'linkSrc',
-          width: '20%',
+          width: '14%',
           key: 'linkSrc',
           },
         {
@@ -134,8 +69,8 @@ function ArticleCategory(){
         },
         {
           title: '创建时间',
-          dataIndex: 'creatTime',
-          key: 'creatTime',
+          dataIndex: 'createTime',
+          key: 'createTime',
           width: '12%',
         },
         {
@@ -181,7 +116,11 @@ function ArticleCategory(){
           message.success(res.data.msg);
           const res1 =  await getAllCategory()   //获取分类列表
           if(res1.data.code == 200){
-            setCategoryList(res.data.data) 
+            let list = res1.data.data
+            let arr = getTree(list,'')
+            let arr1 = JSON.stringify(arr).replace(/categoryName/g,'title').replace(/_id/g,'value')
+            setCategoryList(arr[0].children) 
+            setTreeData(JSON.parse(arr1))
           }
           setVisible(false)
         }
@@ -208,21 +147,34 @@ function ArticleCategory(){
         console.log(file,'66666')
         setFileList(fileList)
       };      
-
+      //转成树
+      const getTree = (data, Pid) => {
+        let result = []
+        let temp
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].supCategory == Pid) {
+                temp = getTree(data, data[i]._id)
+               
+                if (temp.length > 0) {
+                    data[i].children = temp
+                }
+                result.push(data[i])
+            }
+        }
+        return result
+    }
+   
       //生命周期
       useEffect(()=>{
         async function fetchData(){
           const res = await getAllCategory()   //获取分类列表
-          if(res.data.code == 200){
+          if(res&&res.data.code == 200){
             let list = res.data.data;
-            let treeData = list.reduce((total, item)=>{  
-              console.log(total)  
-              return total.push({title:item.categoryName,value:item._id})
-            },[])
-            console.log(treeData,111111)
-            setCategoryList(res.data.data) 
+            let arr = getTree(list,'')
+            let arr1 = JSON.stringify(arr).replace(/categoryName/g,'title').replace(/_id/g,'value')
+            setCategoryList(arr[0].children) 
+            setTreeData(JSON.parse(arr1)) 
           }
-          console.log(res.data,111111)
         }
         fetchData();
         
@@ -230,7 +182,7 @@ function ArticleCategory(){
    return (
         <div>
             <Card title="文章分类"  extra={<Button type="primary" onClick={showModal}>新增分类</Button>}>
-                <Table columns={columns} bordered rowSelection={rowSelection} dataSource={data} />
+                <Table columns={columns} bordered rowSelection={rowSelection} dataSource={categoryList} />
                 <Modal
                     visible={visible}
                     title="添加分类"
@@ -265,7 +217,7 @@ function ArticleCategory(){
                                 style={{ width: '100%' }}
                                 value={ category }
                                 dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                                treeData={categoryList}
+                                treeData={treeData}
                                 placeholder="Please select"
                                 onChange={onChange}
                             />

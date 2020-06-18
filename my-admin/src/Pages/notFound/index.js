@@ -6,7 +6,7 @@
  * @Description: 工作台
  */ 
 
-import React, { useState } from 'react';
+import React, { useState } from './node_modules/react';
 
 function NotFound(){
    const [data,setData] = useState('')
