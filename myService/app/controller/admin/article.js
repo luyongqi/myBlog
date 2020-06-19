@@ -28,7 +28,7 @@ class ArticleController extends Controller {
             msg:'添加成功'
         };
     }
-
+    
 }
 
 module.exports = ArticleController;

@@ -1,30 +1,25 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-06-13 10:18:39
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-18 23:23:15
+ * @LastEditors: your name
+ * @LastEditTime: 2020-06-19 17:40:13
  */ 
 
 import React, { useState, useEffect } from 'react';
 import './index.scss'
 import { message, Card, Table, Empty, Button, Modal, Form, Input, TreeSelect, Upload, InputNumber } from 'antd'
+import Moment from 'moment'
 import ImgCrop from 'antd-img-crop';    //图片裁剪
 import { PlusOutlined } from '@ant-design/icons';
 import { getAllCategory, addCategory } from '../../../apis/manage.js'
+import { baseURL, imgURL } from '../../../configs/config.js'
 
 function ArticleCategory(){
     const [ visible, setVisible ] = useState(false)
     const [ category, setCategory ] = useState('')       //默认选择的分类
     const [ categoryList, setCategoryList ] = useState([])       //分类列表
     const [ treeData, setTreeData ] = useState([])        //分类树形结构
-    const [fileList, setFileList] = useState([          //图片列表
-      {
-        uid: '-1',
-        name: 'image.png',
-        status: 'done',
-        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      },
-    ]);
+    const [fileList, setFileList] = useState([]);       //图片列表
     
     const [ previewVisible, setPreviewVisible ] = useState(false)    //预览图片弹框是否隐藏
     const [ previewImage, setPreviewImage ] = useState('')          //预览图片路径
@@ -111,10 +106,10 @@ function ArticleCategory(){
       };
 
       const onFinish = async (values) => {             //表单填写完成                 
-        const res = await addCategory(values)      //添加文章分类
-        if(res.data.code==200){
+        const res = await addCategory(values)          //添加文章分类
+        if(res&&res.data.code==200){
           message.success(res.data.msg);
-          const res1 =  await getAllCategory()   //获取分类列表
+          const res1 =  await getAllCategory()         //获取分类列表
           if(res1.data.code == 200){
             let list = res1.data.data
             let arr = getTree(list,'')
@@ -140,13 +135,19 @@ function ArticleCategory(){
       const handlePreview = async file => {                //预览
         setPreviewVisible(true)
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
-        setPreviewImage(file.url)
+        setPreviewImage(file.thumbUrl)
       };
-
+      
       const handleChange = ({ file, fileList }) => {     //上传文件改变时的状态
-        console.log(file,'66666')
+        console.log(file.response,fileList,6666) 
+        
         setFileList(fileList)
-      };      
+      };   
+      
+      const handleRemove = ({ file }) => {           //移除图片
+        console.log(file,11111)
+      }
+      
       //转成树
       const getTree = (data, Pid) => {
         let result = []
@@ -154,16 +155,16 @@ function ArticleCategory(){
         for (let i = 0; i < data.length; i++) {
             if (data[i].supCategory == Pid) {
                 temp = getTree(data, data[i]._id)
-               
+                data[i].createTime = Moment(data[i].createTime).format('YYYY-MM-DD HH:mm')
                 if (temp.length > 0) {
-                    data[i].children = temp
+                  data[i].children = temp
                 }
                 result.push(data[i])
             }
         }
         return result
-    }
-   
+      }
+      
       //生命周期
       useEffect(()=>{
         async function fetchData(){
@@ -245,15 +246,16 @@ function ArticleCategory(){
                         >
                           <ImgCrop rotate>
                             <Upload
-                              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                              action={`${baseURL}/tools/savecover`} 
                               listType="picture-card"
                               fileList={fileList}
-                              name="file"
+                              name="cover"
                               onPreview={handlePreview}
                               onChange={handleChange}
+                              onRemove={handleRemove}
                             >
                               {
-                                fileList.length >= 1 ? null : (
+                                fileList.length >= 3 ? null : (
                                   <div>
                                     <PlusOutlined />
                                     <div className="ant-upload-text">Upload</div>

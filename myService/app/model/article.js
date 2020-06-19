@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-30 14:49:59
  * @LastEditors: your name
- * @LastEditTime: 2020-05-30 16:16:38
+ * @LastEditTime: 2020-06-19 11:42:15
  * @Describe: 文章模型
  */ 
 module.exports = app => {
@@ -18,7 +18,7 @@ module.exports = app => {
         updateTime: { type: Number, default:Date.now() },  //更新时间
         imgUrl: { type: String },                   //封面图
         isCarousel:{ type: Boolean, default:false }, //是否展示在首页轮播上
-        recommendType:{ type: String },   //推荐的类型 1-特别推荐 2-站长推荐
+        recommendType:{ type: String, default:'1' },   //推荐的类型 1-特别推荐 2-站长推荐
         lookCount: { type: Number, default:0 },  //浏览量
         category:{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'},          //文章分类
         comments:[ { type: mongoose.Schema.Types.ObjectId, ref: 'Comment'  } ],     //评论列表

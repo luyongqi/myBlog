@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-22 19:45:39
  * @LastEditors: your name
- * @LastEditTime: 2020-06-09 15:15:55
+ * @LastEditTime: 2020-06-19 15:05:13
  * @Description: file content
  */ 
 /* eslint valid-jsdoc: "off" */
@@ -58,12 +58,12 @@ module.exports = appInfo => {
     options: {},
     // plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
   };
+  config.uploadDir = 'app/public/admin/upload'; //后台图片上传目录
   
   // add your user config here
   const userConfig = {
-    // myAppName: 'egg',
+    // myAppName: 'egg',     
   };
-  
   
   return {
     ...config,

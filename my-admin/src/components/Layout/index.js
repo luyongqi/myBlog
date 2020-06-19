@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-06-11 19:33:47
  * @LastEditors: your name
- * @LastEditTime: 2020-06-17 09:26:52
+ * @LastEditTime: 2020-06-19 17:52:06
  * @Description: 首页
  */ 
 
@@ -24,7 +24,7 @@ function LayoutIndex(props){
         setCollapsed( collapsed );
     };
     const menuClick = item => {        //点击菜单
-        props.history.push(item.key)
+        props.history.push(item.key,{name:1})
     };
     const renderMenu = (data)=>{          //根据路由生成多级菜单树
         return data.map((item)=>{
