@@ -2,11 +2,14 @@
  * @Author: 卢勇其
  * @Date: 2020-05-25 15:02:28
  * @LastEditors: your name
- * @LastEditTime: 2020-06-18 17:16:58
+ * @LastEditTime: 2020-06-20 14:14:00
  */ 
 import instance  from '../axios'
 
 const prefix = 'admin'
+
+//图片管理
+export const deleteImg =(data) => instance.post(`/${prefix}/tools/deleteImg`, data)            //获取分类列表
 
 // 文章管理
 export const addArticle = (data) => instance.post(`/${prefix}/article/addArticle`, data)     //添加文章
