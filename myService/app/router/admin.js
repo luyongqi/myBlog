@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-30 16:57:24
  * @LastEditors: your name
- * @LastEditTime: 2020-06-20 14:21:21
+ * @LastEditTime: 2020-06-24 17:02:34
  * @Descript: 后台管理系统 接口路由配置
  */ 
 'use strict';
@@ -13,6 +13,7 @@ module.exports = app => {
   router.get('/admin/article/getArticle', controller.admin.article.getArticle);    //获取文章
 
   router.post('/admin/article/addCategory', controller.admin.articleCategory.addCategory);    //添加文章分类
+  router.post('/admin/article/updateCategory', controller.admin.articleCategory.updateCategory);    //修改文章分类
   router.get('/admin/article/getAllCategory', controller.admin.articleCategory.getAllCategory);    //获取文章分类列表
   router.post('/tools/savecover', controller.admin.uploadImg.saveCover); //上传图片
   router.post('/admin/tools/deleteImg', controller.admin.deleteImg.deleteImg); //删除图片

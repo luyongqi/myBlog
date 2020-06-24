@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-06-18 11:04:33
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-18 22:28:14
+ * @LastEditors: your name
+ * @LastEditTime: 2020-06-24 17:01:08
  */ 
 'use strict';
 
@@ -23,14 +23,15 @@ class ArticleCategoryService extends Service {
         user.save();
     }
     
-    async updateArticle() {        //修改文章分类
+    async updateCategory() {        //修改文章分类
+        let query = this.ctx.request.body
+        console.log(query)
         const result = await this.ctx.model.ArticleCategory.updateOne({
-            "_id":"5eca2324ab4d7d326839c253"
-        },{
-            password:"a1234"
-        });
+            "_id":query._id
+        },query);
         return result
     }
+
     // 保存头像/封面
     async saveAvatar() {
         const { ctx } = this;
