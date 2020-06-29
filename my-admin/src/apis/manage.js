@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-25 15:02:28
  * @LastEditors: your name
- * @LastEditTime: 2020-06-24 17:04:41
+ * @LastEditTime: 2020-06-29 17:55:31
  */ 
 import instance  from '../axios'
 
@@ -13,7 +13,8 @@ export const deleteImg =(data) => instance.post(`/${prefix}/tools/deleteImg`, da
 
 // 文章管理
 export const addArticle = (data) => instance.post(`/${prefix}/article/addArticle`, data)     //添加文章
-export const getArticleDetail = (_id) => instance.get(`/${prefix}/article/getArticleDetail/${_id}`) // 获取文章详情
+export const getArticleList = (_id) => instance.get(`/${prefix}/article/getArticleList`) // 获取文章详情
+export const getArticleById = (_id) => instance.get(`/${prefix}/article/getArticleById/${_id}`) // 获取文章详情
 
 // 文章分类管理
 export const addCategory = (data) => instance.post(`/${prefix}/article/addCategory`, data)     //添加文章分类

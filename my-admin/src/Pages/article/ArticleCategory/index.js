@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-06-13 10:18:39
  * @LastEditors: your name
- * @LastEditTime: 2020-06-24 17:59:28
+ * @LastEditTime: 2020-06-29 09:24:33
  */ 
 
 import React, { useState, useEffect } from 'react';
@@ -268,6 +268,7 @@ function ArticleCategory(props){
                         <Form.Item
                         label="分类名称"
                         name="categoryName"
+                        key="1"
                         rules={[{ required: true, message: '请填写分类名称!' }]}
                         > 
                         
@@ -276,12 +277,14 @@ function ArticleCategory(props){
                         <Form.Item
                         label="排序"  
                         name="rank"
+                        key="2"
                         >
                           <InputNumber />
                         </Form.Item>
                         <Form.Item
                         label="上级分类"
                         name="supCategory"
+                        key="3"
                         >
                             <TreeSelect
                                 style={{ width: '100%' }}
@@ -295,6 +298,7 @@ function ArticleCategory(props){
                         <Form.Item
                         label="链接地址"  
                         name="linkSrc"
+                        key="4"
                         rules={[{ required: true, message: '请填写链接地址!' }]}
                         >
                           <Input />
@@ -303,6 +307,7 @@ function ArticleCategory(props){
                         <Form.Item 
                         label="分类简介"
                         name= 'categoryIntro' 
+                        key="5"
                         rules={[{ required: true, message: '请填写分类简介!' }]}
                         >
                           <Input.TextArea />
@@ -312,6 +317,7 @@ function ArticleCategory(props){
                         <Form.Item  
                         label="封面图"
                         name="coverImg"
+                        key="6"
                         >
                           <ImgCrop rotate  aspect={ 130/100 }>
                             <Upload
@@ -346,7 +352,7 @@ function ArticleCategory(props){
 
                         </Form.Item>
                               
-                        <Form.Item {...tailLayout} style={{marginBottom:0}}>
+                        <Form.Item {...tailLayout} style={{marginBottom:0}} key="7">
                             <Button type="primary" htmlType="submit" >
                                 确定
                             </Button>

@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-30 16:43:29
  * @LastEditors: your name
- * @LastEditTime: 2020-06-18 11:14:21
+ * @LastEditTime: 2020-06-29 18:28:40
  */ 
 'use strict';
 
@@ -20,6 +20,17 @@ class ArticleService extends Service {
         let query = this.ctx.request.body
         const user = new this.ctx.model.Article(query)
         user.save();
+    }
+
+    async getArticleList() {           //获取文章列表 （get请求）
+        const result = await this.ctx.model.Article.find({}).populate('category');
+        return result;
+    }
+
+    async getArticleById() {           //获取文章详情 （get请求）
+        let query = this.ctx.query
+        const result = await this.ctx.model.Article.find({"_id":query.id});
+        return result;
     }
 
     async updateArticle() {        //更新文章

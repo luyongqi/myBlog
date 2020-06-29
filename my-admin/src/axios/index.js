@@ -1,8 +1,8 @@
 /*
  * @Author: 卢勇其
  * @Date: 2020-05-25 14:41:05
- * @LastEditors: 卢勇其
- * @LastEditTime: 2020-06-12 22:33:02
+ * @LastEditors: your name
+ * @LastEditTime: 2020-06-29 14:34:18
  */ 
 import axios from 'axios';
 
@@ -38,7 +38,7 @@ instance.interceptors.response.use(
   },
   error => {
     let { response } = error;
-    if(response.status === 401) {
+    if(response&&response.status === 401) {
       // 清除缓存
       window.sessionStorage.removeItem('userInfo');
       window.location.href = "/login";

@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-06-18 10:58:55
  * @LastEditors: your name
- * @LastEditTime: 2020-06-24 17:01:19
+ * @LastEditTime: 2020-06-29 17:48:23
  */ 
 'use strict';
 
@@ -28,14 +28,6 @@ class ArticleCategoryController extends Controller {
         };
     }
 
-    async getAllCategory() {           //获取所有分类
-        const res = await this.service.articleCategory.getAllCategory();
-        this.ctx.body = {
-            code:200,
-            data:res,
-            msg:'成功'
-        };
-    }
 
     async updateCategory() {           //修改分类
         const res = await this.service.articleCategory.updateCategory();

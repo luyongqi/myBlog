@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-23 21:47:39
  * @LastEditors: your name
- * @LastEditTime: 2020-06-24 17:54:20
+ * @LastEditTime: 2020-06-29 18:16:40
  * @Description: markdown 编辑器
  */ 
 import React, {useState, useEffect} from 'react'
@@ -12,6 +12,7 @@ import 'highlight.js/styles/monokai-sublime.css';
 import './index.scss'
 import { Row, Col, Input,  TreeSelect, Button, DatePicker, message } from 'antd'
 import { addArticle, getAllCategory } from '../../../apis/manage.js'
+import Moment from 'moment'
 
 const { TextArea } = Input
 
@@ -24,7 +25,7 @@ function AddArticle(){
     const [markdownContent, setMarkdownContent] = useState('预览内容') //html内容
     const [introducemd,setIntroducemd] = useState('')            //简介的markdown内容
     const [introducehtml,setIntroducehtml] = useState('等待编辑') //简介的html内容
-    const [showDate,setShowDate] = useState()   //发布日期 
+    const [showDate,setShowDate] = useState('')   //发布日期 
 
     marked.setOptions({
         renderer:marked.Renderer(),
@@ -42,14 +43,18 @@ function AddArticle(){
     
     // 选择分类 分类下拉框
     const onChange = value => {      
-        console.log(value);
         setCategory(value)
       };
     // 设置文章内容
     const changeContent = (e)=>{
         setArticleContent(e.target.value)
         let html=marked(e.target.value)
+       
         setMarkdownContent(html)
+    }
+    // 发布时间发生改变时
+    const changeDate = (date,dateString)=>{
+        setShowDate(dateString)
     }
     // 设置简介内容
     const changeIntroducemd = (e)=>{
@@ -72,13 +77,24 @@ function AddArticle(){
         }
         return result
     }
+
+    // 初始化数据
+    const initData = async () => {
+        setArticleTitle('')
+        setCategory('请选择')
+        setArticleContent('')
+        setIntroducemd('')
+        setMarkdownContent('预览内容')
+        setIntroducehtml('等待编辑')
+    }
+
     // 保存文章
     const saveArticle = async ()=>{
-        if(category=='请选择'){
-            message.error('必须选择文章类型')
-            return false
-        }else if(!articleTitle){
+        if(!articleTitle){
             message.error('必须填写文章标题')
+            return false
+        }else if(category=='请选择'){
+            message.error('必须选择文章类型')
             return false
         }else if(!articleContent){
             message.error('必须填写文章内容')
@@ -96,9 +112,15 @@ function AddArticle(){
         sendData.introducemd = introducemd
         sendData.category = category
         let createTime = showDate.replace('-','/')
-        sendData.createTime = (new Date(createTime).getTime())/1000  //精确到秒 
+        sendData.createTime = new Date(createTime).getTime() //精确到秒 
         
         const res = await addArticle(sendData)   //发送请求 
+        if(res&&res.data.code==200){
+            message.success('保存成功')
+            initData()         //初始化数据
+        }else{
+            message.error('保存失败')
+        }
     }
     // 生命周期 组件挂载
     useEffect(()=>{
@@ -111,6 +133,7 @@ function AddArticle(){
               setTreeData(JSON.parse(arr1)[0].children) 
             }
         }
+        setShowDate(Moment(Date.now()).format('YYYY-MM-DD'))
         fetchData();
     },[])
     
@@ -146,6 +169,7 @@ function AddArticle(){
                             <TextArea 
                                 className="markdown-content"
                                 rows={35}
+                                value={articleContent}
                                 placeholder="文章内容"
                                 onChange={changeContent}
                             />
@@ -169,6 +193,7 @@ function AddArticle(){
                             <TextArea
                                 rows={4}
                                 placeholder="文章简介"
+                                value={introducemd}
                                 onChange={changeIntroducemd}
                             />
                             <br/><br/>
@@ -179,8 +204,10 @@ function AddArticle(){
                         <Col span={12}>
                             <div className="date-select">
                                 <DatePicker
-                                    onChange={(date,dateString)=>{setShowDate(dateString)}}
+                                    onChange={changeDate}
                                     placeholder="发布日期"
+                                    allowClear={false}
+                                    value={Moment(showDate, 'YYYY-MM-DD')}
                                     size="large"
                                 />
                             </div>
