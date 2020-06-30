@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-25 15:02:28
  * @LastEditors: your name
- * @LastEditTime: 2020-06-29 17:55:31
+ * @LastEditTime: 2020-06-30 17:15:21
  */ 
 import instance  from '../axios'
 
@@ -20,6 +20,9 @@ export const getArticleById = (_id) => instance.get(`/${prefix}/article/getArtic
 export const addCategory = (data) => instance.post(`/${prefix}/article/addCategory`, data)     //添加文章分类
 export const getAllCategory =() => instance.get(`/${prefix}/article/getAllCategory`)            //获取分类列表
 export const updateCategory =(data) => instance.post(`/${prefix}/article/updateCategory`,data)         //修改文章分类
+
+// 相册管理
+export const getAlbumDir =() => instance.get(`/${prefix}/album/getAlbumDir`)            //获取静态图片目录
 
 // 角色管理
 export const fetchRoleList = (data) =>  instance.post(`/${prefix}/role/list`, data) // 角色列表

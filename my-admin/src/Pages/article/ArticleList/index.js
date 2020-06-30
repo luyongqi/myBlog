@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-06-13 10:23:33
  * @LastEditors: your name
- * @LastEditTime: 2020-06-29 18:25:21
+ * @LastEditTime: 2020-06-30 10:03:56
  */ 
 
 import React, { useState, useEffect } from 'react';
@@ -45,7 +45,7 @@ function ArticleList(props){
           title: '所属分类',
           dataIndex: 'category',
           width: '6%',
-          key: 'category',
+          key: 'category'
         }, 
         {
           title: '置顶级别',
@@ -107,6 +107,7 @@ function ArticleList(props){
           let list = res.data.data
           for (let i = 0; i < list.length; i++) {
             list[i].createTime = Moment(list[i].createTime).format('YYYY-MM-DD')
+            list[i].category = list[i].category.categoryName
         }
           setArticleList(list)
         }

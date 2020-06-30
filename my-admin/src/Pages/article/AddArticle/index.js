@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-23 21:47:39
  * @LastEditors: your name
- * @LastEditTime: 2020-06-29 18:16:40
+ * @LastEditTime: 2020-06-30 15:21:10
  * @Description: markdown 编辑器
  */ 
 import React, {useState, useEffect} from 'react'
@@ -10,8 +10,11 @@ import marked from 'marked'
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 import './index.scss'
-import { Row, Col, Input,  TreeSelect, Button, DatePicker, message } from 'antd'
-import { addArticle, getAllCategory } from '../../../apis/manage.js'
+import ImgCrop from 'antd-img-crop';    //图片裁剪
+import { PlusOutlined } from '@ant-design/icons';
+import { Row, Col, Input,  TreeSelect, Button, DatePicker,Modal, message, Upload } from 'antd'
+import { addArticle, getAllCategory, deleteImg } from '../../../apis/manage.js'
+import { baseURL, imgURL } from '../../../configs/config.js'
 import Moment from 'moment'
 
 const { TextArea } = Input
@@ -26,6 +29,10 @@ function AddArticle(){
     const [introducemd,setIntroducemd] = useState('')            //简介的markdown内容
     const [introducehtml,setIntroducehtml] = useState('等待编辑') //简介的html内容
     const [showDate,setShowDate] = useState('')   //发布日期 
+    const [ fileList, setFileList ] = useState([]);       //图片列表
+    const [ previewVisible, setPreviewVisible ] = useState(false)    //预览图片弹框是否隐藏
+    const [ previewImage, setPreviewImage ] = useState('')          //预览图片路径
+    const [ previewTitle, setPreviewTitle ] = useState('')          //预览图片名称
 
     marked.setOptions({
         renderer:marked.Renderer(),
@@ -77,7 +84,37 @@ function AddArticle(){
         }
         return result
     }
+    
+    const handleCancelPrev = () => setPreviewVisible(false);     //隐藏图片预览弹框
 
+    const handlePreview = async file => {                //预览
+        setPreviewVisible(true)
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1))
+        if(file.status=='done'){
+            setPreviewImage(imgURL + file.response.data.cover)
+        }
+    };
+      
+    const handleChange = ({ fileList }) => {     //上传文件改变时的状态
+    setFileList(fileList)
+    };   
+    
+    const handleRemove = async ( file ) => {           //移除图片      
+        let imgSrc;  
+        if(file.response){
+            imgSrc = file.response.data.cover
+        }else{
+            imgSrc = file.coverImg
+        }
+        let arr=[]
+        arr.push(imgSrc)
+        //调用图片删除方法
+        const res =  await deleteImg(arr)
+        if(res&&res.data.code==200){
+            message.error('删除成功')
+        }
+    
+    }
     // 初始化数据
     const initData = async () => {
         setArticleTitle('')
@@ -86,10 +123,12 @@ function AddArticle(){
         setIntroducemd('')
         setMarkdownContent('预览内容')
         setIntroducehtml('等待编辑')
+        setFileList([])
     }
 
     // 保存文章
     const saveArticle = async ()=>{
+     
         if(!articleTitle){
             message.error('必须填写文章标题')
             return false
@@ -102,6 +141,9 @@ function AddArticle(){
         }else if(!introducemd){
             message.error('必须填写文章简介')
             return false
+        }else if(fileList.length==0){
+            message.error('请上传文章封面图')
+            return false
         }else if(!showDate){
             message.error('发布日期不能为空')
             return false
@@ -112,8 +154,12 @@ function AddArticle(){
         sendData.introducemd = introducemd
         sendData.category = category
         let createTime = showDate.replace('-','/')
-        sendData.createTime = new Date(createTime).getTime() //精确到秒 
-        
+        sendData.createTime = new Date(createTime).getTime() //精确到秒
+        if(fileList[0].status=='done'){
+            sendData.coverImg = fileList[0].response.data.cover
+        }else{
+            message.error('请重新上传图片')
+        } 
         const res = await addArticle(sendData)   //发送请求 
         if(res&&res.data.code==200){
             message.success('保存成功')
@@ -200,6 +246,38 @@ function AddArticle(){
                             <div className="introduce-html"
                                 dangerouslySetInnerHTML={{__html:introducehtml}}
                             ></div>
+                        </Col>
+                        <Col span={24}>
+                            <br/>
+                            <ImgCrop rotate  aspect={ 617/260 }>
+                            <Upload
+                              action={`${baseURL}/tools/savecover`} 
+                              listType="picture-card"
+                              fileList={fileList}
+                              name="cover"
+                              onPreview={handlePreview}
+                              onChange={handleChange}
+                              onRemove={handleRemove}
+                            >
+                              {
+                                fileList.length >= 1 ? null : (
+                                  <div>
+                                    <PlusOutlined />
+                                    <div className="ant-upload-text">Upload</div>
+                                  </div>
+                                )
+                              }
+                            </Upload>
+                          </ImgCrop>
+                          {/* 图片预览弹框*/}
+                          <Modal
+                            visible={previewVisible}
+                            title={previewTitle}
+                            footer={null}
+                            onCancel={handleCancelPrev}
+                          >
+                            <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                          </Modal>
                         </Col>
                         <Col span={12}>
                             <div className="date-select">

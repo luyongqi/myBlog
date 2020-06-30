@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-05-30 16:43:29
  * @LastEditors: your name
- * @LastEditTime: 2020-06-29 18:28:40
+ * @LastEditTime: 2020-06-30 09:35:49
  */ 
 'use strict';
 
@@ -23,7 +23,7 @@ class ArticleService extends Service {
     }
 
     async getArticleList() {           //获取文章列表 （get请求）
-        const result = await this.ctx.model.Article.find({}).populate('category');
+        const result = await this.ctx.model.Article.find({}).populate('category').sort({createTime:-1});
         return result;
     }
 

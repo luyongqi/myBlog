@@ -2,7 +2,7 @@
  * @Author: 卢勇其
  * @Date: 2020-06-13 10:18:39
  * @LastEditors: your name
- * @LastEditTime: 2020-06-29 09:24:33
+ * @LastEditTime: 2020-06-30 15:06:31
  */ 
 
 import React, { useState, useEffect } from 'react';
@@ -31,7 +31,7 @@ function ArticleCategory(props){
       linkSrc:"",
       categoryIntro:""
     })
-  
+    
     const [form] = Form.useForm();                //表单对象
 
     const columns = [
@@ -116,7 +116,6 @@ function ArticleCategory(props){
       setVisible(false)
     };
     const editCategory = (record) => {             //修改分类
-      console.log(record)
       setVisible(true)        //显示弹框
       setStatus('edit')         //设置状态 是编辑还是修改
       form.setFieldsValue({
@@ -209,8 +208,7 @@ function ArticleCategory(props){
       setFileList(fileList)
     };   
     
-    const handleRemove = async ( file ) => {           //移除图片
-      console.log(file,'移除图片')       
+    const handleRemove = async ( file ) => {           //移除图片      
       let imgSrc;  
       if(file.response){
         imgSrc = file.response.data.cover

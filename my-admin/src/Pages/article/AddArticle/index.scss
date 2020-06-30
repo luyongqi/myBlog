@@ -91,5 +91,16 @@
     background-color: #f8f8f8;
 }
 .date-select{
-    margin-top:10px;
+    margin-top:20px;
+}
+
+
+.ant-upload.ant-upload-drag{
+    height: 175px;
+}
+.ant-upload-list-picture-card-container {
+    float: left;
+    width: 104px;
+    height: 104px;
+    margin: 10px 8px 8px 0;
 }
